@@ -47,7 +47,7 @@
 </head>
 <body class="text-[#002d5e] min-h-screen flex flex-col md:flex-row overflow-hidden">
 
-    <!-- Sidebar (Giữ màu tối để tương phản) -->
+    <!-- Sidebar -->
     <aside class="w-full md:w-64 bg-[#001f3f] border-r gold-border p-6 flex flex-col hidden md:flex shadow-2xl z-20">
         <!-- Logo Section -->
         <div class="flex flex-col items-start gap-4 mb-10">
@@ -68,7 +68,7 @@
         </nav>
 
         <div class="mt-auto pt-6 border-t gold-border">
-            <div class="p-3 bg-white/5 rounded-2xl border border-white/10">
+            <div class="p-3 bg-white/5 rounded-2xl border border-white/10 text-slate-300">
                 <p class="text-[10px] text-slate-500 uppercase mb-1">Dung lượng bộ nhớ</p>
                 <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
                     <div class="bg-amber-500 h-full" style="width: 45%"></div>
@@ -80,7 +80,7 @@
 
     <!-- Main Content -->
     <main class="flex-1 flex flex-col h-screen overflow-hidden bg-[#fff9e6]">
-        <!-- Header sáng -->
+        <!-- Header -->
         <header class="p-6 bg-[#fff9e6]/90 backdrop-blur-md border-b gold-border z-10 shadow-sm">
             <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
                 <div class="flex items-center gap-4">
@@ -127,13 +127,30 @@
             "SNZT00W000033", "SNZTXMW000047"
         ];
 
+        // Ánh xạ các tệp video thực tế vào các mã sản phẩm tương ứng
+        const fileMapping = {
+            "GB0000W002980": "GB0000W002980.mp4",
+            "GBXMXMW003718": "GBXMXMW003718.mp4",
+            "GBXMXMW003741": "GBXMXMW003741.mp4",
+            "GBXMXMW003806": "GBXMXMW003806.mp4",
+            "GBXMXMY011060": "GBXMXMY011060.mp4",
+            "GBXMXMY011061": "GBXMXMY011061.mp4",
+            "GC0000C000061": "GC0000C000061.mp4",
+            "GNDDDDW015508": "GNDDDDW015508.mp4",
+            "GI0000Y000730": "GI0000Y000730.mp4",
+            "GI0000Y000778": "GI0000Y000778.mp4",
+            "GMXMXMY010003": "GMXMXMY010003.mp4",
+            "GNDDDDW015506": "GNDDDDW015506.mp4"
+        };
+
         const videoData = videoTitles.map((title, index) => ({
             id: index + 1,
             title: title,
             tech: title.startsWith('S') ? 'Silver Collection' : 'Gold Jewelry',
             date: "24/03/2026",
             views: Math.floor(Math.random() * 200) + 20,
-            url: "https://assets.mixkit.co/videos/preview/mixkit-close-up-of-a-woman-showing-a-ring-43343-large.mp4" 
+            // Sử dụng tệp thực tế nếu có, nếu không thì dùng video mẫu
+            url: fileMapping[title] || "https://assets.mixkit.co/videos/preview/mixkit-close-up-of-a-woman-showing-a-ring-43343-large.mp4" 
         }));
 
         const videoGrid = document.getElementById('videoGrid');
@@ -167,7 +184,7 @@
                     </div>
 
                     <div class="p-5 flex flex-col flex-1">
-                        <h3 class="serif-font text-lg pnj-blue mb-1 tracking-tight group-hover:gold-text transition-colors uppercase">${video.title}</h3>
+                        <h3 class="serif-font text-lg pnj-blue mb-1 tracking-tight group-hover:gold-text transition-colors uppercase font-bold">${video.title}</h3>
                         <p class="text-[10px] text-slate-400 mb-4 flex items-center gap-1 uppercase tracking-widest font-bold">
                             <i data-lucide="tag" class="w-3 h-3 text-amber-500"></i> ${video.tech}
                         </p>
@@ -192,12 +209,14 @@
             const storageKey = `viewed_session_${id}`;
             if (!sessionStorage.getItem(storageKey)) {
                 const viewSpan = document.getElementById(`views-${id}`);
-                let count = parseInt(viewSpan.innerText);
-                count++;
-                viewSpan.innerText = count;
-                viewSpan.classList.add('gold-text', 'scale-110');
-                sessionStorage.setItem(storageKey, "true");
-                setTimeout(() => viewSpan.classList.remove('scale-110'), 300);
+                if (viewSpan) {
+                    let count = parseInt(viewSpan.innerText);
+                    count++;
+                    viewSpan.innerText = count;
+                    viewSpan.classList.add('gold-text', 'scale-110');
+                    sessionStorage.setItem(storageKey, "true");
+                    setTimeout(() => viewSpan.classList.remove('scale-110'), 300);
+                }
             }
         }
 
