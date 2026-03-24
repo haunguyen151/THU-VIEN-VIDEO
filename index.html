@@ -309,6 +309,71 @@
             fill: currentColor;
         }
 
+        /* --- Thanh Tabs phía trên --- */
+        .tab-wrapper {
+            display: flex;
+            justify-content: center;
+            margin: 30px auto 10px auto;
+            padding: 0 20px;
+        }
+
+        .tab-container {
+            display: inline-flex;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 50px;
+            padding: 8px 12px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+            backdrop-filter: blur(10px);
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .tab-btn {
+            padding: 12px 35px;
+            background: transparent;
+            border: none;
+            border-radius: 40px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--pnj-blue);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .tab-btn:hover {
+            background-color: rgba(0, 51, 102, 0.05);
+        }
+
+        .tab-btn.active {
+            background-color: var(--pnj-blue);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(0, 51, 102, 0.25);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: grid;
+        }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 80px 20px;
+            font-style: italic;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 16px;
+            border: 2px dashed rgba(212, 175, 55, 0.4);
+            backdrop-filter: blur(5px);
+        }
+
         /* Responsive cho Mobile & Tablet */
         @media (max-width: 1000px) {
             .header-badge {
@@ -340,6 +405,20 @@
         }
 
         @media (max-width: 650px) {
+            .tab-wrapper {
+                margin: 20px auto 0 auto;
+            }
+            .tab-container {
+                width: 100%;
+                justify-content: flex-start;
+                border-radius: 20px;
+                padding: 10px;
+                overflow-x: auto;
+            }
+            .tab-btn {
+                white-space: nowrap;
+                padding: 10px 25px;
+            }
             .video-container {
                 grid-template-columns: repeat(2, 1fr); /* Đổi thành 2 cột trên mobile */
                 gap: 12px; /* Giảm khoảng cách giữa các video cho vừa màn hình */
@@ -430,8 +509,22 @@
         </div>
     </header>
 
-    <!-- Grid Videos -->
-    <main class="video-container" id="videoContainer">
+    <!-- Thanh Tabs -->
+    <div class="tab-wrapper">
+        <div class="tab-container">
+            <button class="tab-btn active" data-target="explainer">
+                <svg viewBox="0 0 24 24" width="16" height="16" style="margin-right: 6px; flex-shrink: 0; fill: currentColor;"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 12.5v-9l6 4.5-6 4.5z"/></svg>
+                VIDEO EXPLAINER
+            </button>
+            <button class="tab-btn" data-target="review">
+                <svg viewBox="0 0 24 24" width="16" height="16" style="margin-right: 6px; flex-shrink: 0; fill: currentColor;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                VIDEO REVIEW
+            </button>
+        </div>
+    </div>
+
+    <!-- Tab 1: VIDEO EXPLAINER -->
+    <main class="video-container tab-content active" id="explainer">
         <!-- Video 1 -->
         <div class="video-card" data-vid="GB0000W002980">
             <div class="video-wrapper">
@@ -734,6 +827,14 @@
         </div>
     </main>
 
+    <!-- Tab 2: VIDEO REVIEW -->
+    <main class="video-container tab-content" id="review">
+        <div class="empty-state">
+            <svg viewBox="0 0 24 24" width="60" height="60" style="fill: #ccc; margin-bottom: 15px;"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 12.5v-9l6 4.5-6 4.5z"/></svg>
+            <p>Chưa có video đánh giá (Review) nào trong mục này.</p>
+        </div>
+    </main>
+
     <!-- Script xử lý tìm kiếm và Cơ sở dữ liệu Thực tế -->
     <script type="module">
         // Import các thư viện xử lý Database đám mây
@@ -756,6 +857,21 @@
                     } else {
                         card.style.display = 'none';
                     }
+                });
+            });
+
+            // --- XỬ LÝ CHUYỂN ĐỔI TAB ---
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+
+                    btn.classList.add('active');
+                    const targetId = btn.getAttribute('data-target');
+                    document.getElementById(targetId).classList.add('active');
                 });
             });
 
