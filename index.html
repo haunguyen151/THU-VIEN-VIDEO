@@ -310,7 +310,9 @@
 
         @media (max-width: 650px) {
             .video-container {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr); /* Đổi thành 2 cột trên mobile */
+                gap: 12px; /* Giảm khoảng cách giữa các video cho vừa màn hình */
+                padding: 0 10px; /* Giảm lề 2 bên */
             }
             .header {
                 flex-direction: column;
@@ -338,6 +340,39 @@
                 width: 100%;
                 max-width: 350px;
             }
+            
+            /* Tinh chỉnh lại kích thước các chi tiết bên trong thẻ video trên mobile */
+            .video-info {
+                padding: 12px 8px;
+            }
+            .video-info::before {
+                margin: 0 auto 8px auto;
+            }
+            .video-info h3 {
+                font-size: 13px; /* Thu nhỏ tiêu đề SP */
+                margin-bottom: 4px;
+            }
+            .video-info p {
+                font-size: 10px; /* Thu nhỏ mã SP */
+            }
+            .play-btn {
+                width: 45px; /* Thu nhỏ nút play */
+                height: 45px;
+            }
+            .play-btn svg {
+                width: 18px;
+                height: 18px;
+            }
+            .view-count {
+                bottom: 8px;
+                left: 8px;
+                padding: 3px 6px;
+                font-size: 10px; /* Thu nhỏ lượt xem */
+            }
+            .view-count svg {
+                width: 12px;
+                height: 12px;
+            }
         }
     </style>
 </head>
@@ -360,8 +395,8 @@
         <!-- Video 1 -->
         <div class="video-card" data-vid="GB0000W002980">
             <div class="video-wrapper">
-                <video preload="metadata" muted loop>
-                    <source src="GB0000W002980.mp4" type="video/mp4">
+                <video preload="metadata" muted loop playsinline>
+                    <source src="GB0000W002980.mp4#t=0.001" type="video/mp4">
                     Trình duyệt của bạn không hỗ trợ thẻ video.
                 </video>
                 <div class="play-btn">
@@ -370,7 +405,7 @@
                 <!-- Vùng hiển thị lượt xem -->
                 <div class="view-count" title="Lượt xem">
                     <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    <span class="count-text">0</span>
+                    <span class="count-text">...</span>
                 </div>
             </div>
             <div class="video-info">
@@ -382,8 +417,8 @@
         <!-- Video 2 -->
         <div class="video-card" data-vid="GBXMXMW003718">
             <div class="video-wrapper">
-                <video preload="metadata" muted loop>
-                    <source src="GBXMXMW003718.mp4" type="video/mp4">
+                <video preload="metadata" muted loop playsinline>
+                    <source src="GBXMXMW003718.mp4#t=0.001" type="video/mp4">
                     Trình duyệt của bạn không hỗ trợ thẻ video.
                 </video>
                 <div class="play-btn">
@@ -391,7 +426,7 @@
                 </div>
                 <div class="view-count" title="Lượt xem">
                     <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    <span class="count-text">0</span>
+                    <span class="count-text">...</span>
                 </div>
             </div>
             <div class="video-info">
@@ -403,8 +438,8 @@
         <!-- Video 3 -->
         <div class="video-card" data-vid="GBXMXMW003741">
             <div class="video-wrapper">
-                <video preload="metadata" muted loop>
-                    <source src="GBXMXMW003741.mp4" type="video/mp4">
+                <video preload="metadata" muted loop playsinline>
+                    <source src="GBXMXMW003741.mp4#t=0.001" type="video/mp4">
                     Trình duyệt của bạn không hỗ trợ thẻ video.
                 </video>
                 <div class="play-btn">
@@ -412,7 +447,7 @@
                 </div>
                 <div class="view-count" title="Lượt xem">
                     <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    <span class="count-text">0</span>
+                    <span class="count-text">...</span>
                 </div>
             </div>
             <div class="video-info">
@@ -424,8 +459,8 @@
         <!-- Video 4 -->
         <div class="video-card" data-vid="GBXMXMW003806">
             <div class="video-wrapper">
-                <video preload="metadata" muted loop>
-                    <source src="GBXMXMW003806.mp4" type="video/mp4">
+                <video preload="metadata" muted loop playsinline>
+                    <source src="GBXMXMW003806.mp4#t=0.001" type="video/mp4">
                     Trình duyệt của bạn không hỗ trợ thẻ video.
                 </video>
                 <div class="play-btn">
@@ -433,7 +468,7 @@
                 </div>
                 <div class="view-count" title="Lượt xem">
                     <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    <span class="count-text">0</span>
+                    <span class="count-text">...</span>
                 </div>
             </div>
             <div class="video-info">
@@ -445,8 +480,8 @@
         <!-- Video 5 -->
         <div class="video-card" data-vid="GBXMXMY011060">
             <div class="video-wrapper">
-                <video preload="metadata" muted loop>
-                    <source src="GBXMXMY011060.mp4" type="video/mp4">
+                <video preload="metadata" muted loop playsinline>
+                    <source src="GBXMXMY011060.mp4#t=0.001" type="video/mp4">
                     Trình duyệt của bạn không hỗ trợ thẻ video.
                 </video>
                 <div class="play-btn">
@@ -454,7 +489,7 @@
                 </div>
                 <div class="view-count" title="Lượt xem">
                     <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    <span class="count-text">0</span>
+                    <span class="count-text">...</span>
                 </div>
             </div>
             <div class="video-info">
@@ -466,8 +501,8 @@
         <!-- Video 6 -->
         <div class="video-card" data-vid="GBXMXMY011061">
             <div class="video-wrapper">
-                <video preload="metadata" muted loop>
-                    <source src="GBXMXMY011061.mp4" type="video/mp4">
+                <video preload="metadata" muted loop playsinline>
+                    <source src="GBXMXMY011061.mp4#t=0.001" type="video/mp4">
                     Trình duyệt của bạn không hỗ trợ thẻ video.
                 </video>
                 <div class="play-btn">
@@ -475,7 +510,7 @@
                 </div>
                 <div class="view-count" title="Lượt xem">
                     <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    <span class="count-text">0</span>
+                    <span class="count-text">...</span>
                 </div>
             </div>
             <div class="video-info">
@@ -485,20 +520,23 @@
         </div>
     </main>
 
-    <!-- Script xử lý tìm kiếm và Video -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // --- XỬ LÝ TÌM KIẾM ---
+    <!-- Script xử lý tìm kiếm và Cơ sở dữ liệu Thực tế -->
+    <script type="module">
+        // Import các thư viện xử lý Database đám mây
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, onSnapshot, updateDoc, increment } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- XỬ LÝ THANH TÌM KIẾM ---
             const searchInput = document.getElementById('searchInput');
             const videoCards = document.querySelectorAll('.video-card');
 
             searchInput.addEventListener('input', function() {
                 const searchTerm = this.value.trim().toLowerCase();
-
                 videoCards.forEach(card => {
                     const title = card.querySelector('h3').textContent.toLowerCase();
                     const code = card.querySelector('p').textContent.toLowerCase();
-
                     if (title.includes(searchTerm) || code.includes(searchTerm)) {
                         card.style.display = 'flex';
                     } else {
@@ -507,72 +545,135 @@
                 });
             });
 
-            // --- XỬ LÝ NÚT PLAY VÀ AUTO-PLAY KHI HOVER ---
+            // --- XỬ LÝ LƯỢT XEM THỰC TẾ (DATABASE CLOUD) ---
             const videoWrappers = document.querySelectorAll('.video-wrapper');
-            // Kiểm tra xem thiết bị có dùng chuột không (Desktop)
             const isDesktop = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-            const viewKeyPrefix = 'pnj_views_'; // Tiền tố lưu tên biến trong bộ nhớ trình duyệt
+            // Kiểm tra và nhận Cấu hình Database từ hệ thống
+            let firebaseConfig = null;
+            if (typeof __firebase_config !== 'undefined' && __firebase_config) {
+                firebaseConfig = JSON.parse(__firebase_config);
+            }
 
-            videoWrappers.forEach(wrapper => {
-                const video = wrapper.querySelector('video');
-                const card = wrapper.closest('.video-card');
-                const vidId = card.getAttribute('data-vid');
-                const countText = wrapper.querySelector('.count-text');
+            // Nếu hệ thống đã cung cấp Database (Môi trường Preview này đã có sẵn)
+            if (firebaseConfig) {
+                const app = initializeApp(firebaseConfig);
+                const auth = getAuth(app);
+                const db = getFirestore(app);
+                const appId = typeof __app_id !== 'undefined' ? __app_id : 'pnj-video-gallery';
 
-                // Khởi tạo lượt xem từ localStorage (nếu chưa có thì random 100-500 để giao diện đẹp)
-                let views = parseInt(localStorage.getItem(viewKeyPrefix + vidId));
-                if (isNaN(views)) {
-                    views = Math.floor(Math.random() * 400) + 100;
-                    localStorage.setItem(viewKeyPrefix + vidId, views);
-                }
-                countText.textContent = views.toLocaleString('vi-VN');
+                // Đăng nhập ẩn danh để có quyền lưu dữ liệu
+                const initAuth = async () => {
+                    try {
+                        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                            await signInWithCustomToken(auth, __initial_auth_token);
+                        } else {
+                            await signInAnonymously(auth);
+                        }
+                    } catch(e) { console.error("Lỗi kết nối máy chủ:", e); }
+                };
+                initAuth();
 
-                let hasCountedThisSession = false; // Tránh đếm liên tục khi rê chuột ra/vào nhanh
+                onAuthStateChanged(auth, (user) => {
+                    if (!user) return;
+                    
+                    videoWrappers.forEach(wrapper => {
+                        const video = wrapper.querySelector('video');
+                        const card = wrapper.closest('.video-card');
+                        const vidId = card.getAttribute('data-vid');
+                        const countText = wrapper.querySelector('.count-text');
 
-                // Cập nhật giao diện khi video chạy/dừng
-                video.addEventListener('play', () => {
-                    wrapper.classList.add('is-playing');
-                    video.controls = true; // Hiện thanh điều khiển khi phát
+                        // Trỏ đến ngăn lưu trữ số lượt xem của đúng Video này
+                        const viewDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'videoViews', vidId);
 
-                    // Tăng lượt xem (chỉ tính 1 lần mỗi khi mở trang)
-                    if (!hasCountedThisSession) {
-                        views++;
-                        localStorage.setItem(viewKeyPrefix + vidId, views);
-                        countText.textContent = views.toLocaleString('vi-VN');
-                        hasCountedThisSession = true;
-                    }
-                });
-
-                video.addEventListener('pause', () => {
-                    wrapper.classList.remove('is-playing');
-                    video.controls = false; // Ẩn thanh điều khiển để làm sạch giao diện
-                });
-
-                // Click vào video để play/pause (hỗ trợ cả mobile)
-                video.addEventListener('click', () => {
-                    if (video.paused) {
-                        video.play();
-                    } else {
-                        video.pause();
-                    }
-                });
-
-                // Nếu là Desktop, thêm tính năng hover để tự phát
-                if (isDesktop) {
-                    wrapper.addEventListener('mouseenter', () => {
-                        // Gọi hàm play()
-                        video.play().catch(err => {
-                            console.log('Trình duyệt chặn autoplay:', err);
+                        // Lắng nghe thay đổi dữ liệu (Khi có ai đó xem, số sẽ nhảy lên ngay lập tức)
+                        onSnapshot(viewDocRef, (docSnap) => {
+                            if (docSnap.exists()) {
+                                const data = docSnap.data();
+                                countText.textContent = (data.views || 0).toLocaleString('vi-VN');
+                            } else {
+                                countText.textContent = "0";
+                                // Tạo file lưu trữ nếu video này chưa ai xem
+                                setDoc(viewDocRef, { views: 0 }, { merge: true }).catch(()=>{});
+                            }
                         });
-                    });
 
-                    wrapper.addEventListener('mouseleave', () => {
-                        // Tạm dừng khi chuột rời đi
-                        video.pause();
+                        // Biến chống spam: Chỉ cộng 1 lượt xem cho mỗi lần tải trang
+                        let hasCountedThisSession = false;
+
+                        video.addEventListener('play', async () => {
+                            wrapper.classList.add('is-playing');
+                            video.controls = true;
+
+                            if (!hasCountedThisSession) {
+                                hasCountedThisSession = true;
+                                try {
+                                    // Bắn tín hiệu lên Database: Cộng thêm 1 vào tổng số lượt xem
+                                    await updateDoc(viewDocRef, { views: increment(1) });
+                                } catch (e) {
+                                    await setDoc(viewDocRef, { views: 1 }, { merge: true });
+                                }
+                            }
+                        });
+
+                        video.addEventListener('pause', () => {
+                            wrapper.classList.remove('is-playing');
+                            video.controls = false;
+                        });
+
+                        video.addEventListener('click', () => {
+                            if (video.paused) video.play();
+                            else video.pause();
+                        });
+
+                        if (isDesktop) {
+                            wrapper.addEventListener('mouseenter', () => video.play().catch(()=>{}));
+                            wrapper.addEventListener('mouseleave', () => video.pause());
+                        }
                     });
-                }
-            });
+                });
+            } else {
+                // FALLBACK: Khi đưa web lên GitHub Pages (hoặc máy chủ không có cấu hình Database)
+                // Nó sẽ lưu trữ tạo vào bộ nhớ cục bộ để tránh bị vỡ giao diện.
+                videoWrappers.forEach(wrapper => {
+                    const video = wrapper.querySelector('video');
+                    const card = wrapper.closest('.video-card');
+                    const vidId = card.getAttribute('data-vid');
+                    const countText = wrapper.querySelector('.count-text');
+                    
+                    let views = parseInt(localStorage.getItem('pnj_fallback_' + vidId));
+                    if (isNaN(views)) views = Math.floor(Math.random() * 50) + 10;
+                    countText.textContent = views.toLocaleString('vi-VN');
+                    
+                    let hasCountedThisSession = false;
+                    
+                    video.addEventListener('play', () => {
+                        wrapper.classList.add('is-playing');
+                        video.controls = true;
+                        if (!hasCountedThisSession) {
+                            views++;
+                            localStorage.setItem('pnj_fallback_' + vidId, views);
+                            countText.textContent = views.toLocaleString('vi-VN');
+                            hasCountedThisSession = true;
+                        }
+                    });
+                    
+                    video.addEventListener('pause', () => {
+                        wrapper.classList.remove('is-playing');
+                        video.controls = false;
+                    });
+                    
+                    video.addEventListener('click', () => {
+                        if (video.paused) video.play();
+                        else video.pause();
+                    });
+                    
+                    if (isDesktop) {
+                        wrapper.addEventListener('mouseenter', () => video.play().catch(()=>{}));
+                        wrapper.addEventListener('mouseleave', () => video.pause());
+                    }
+                });
+            }
         });
     </script>
 </body>
