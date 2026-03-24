@@ -34,37 +34,94 @@
             color: var(--white);
             display: flex;
             align-items: center;
+            justify-content: space-between;
             padding: 15px 40px;
             box-shadow: 0 4px 20px rgba(0, 51, 102, 0.4);
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 3px solid var(--pnj-gold); /* Điểm nhấn viền vàng kim */
+            border-bottom: 3px solid var(--pnj-gold);
         }
 
         .header .logo {
-            height: 60px;
+            height: 85px; /* Scale logo to hơn */
             width: auto;
             object-fit: contain;
             filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.3));
+            transition: transform 0.3s ease;
+        }
+        
+        .header .logo:hover {
+            transform: scale(1.05);
         }
 
         .header .title-container {
-            flex-grow: 1;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
+            flex-direction: column;
+            align-items: center;
             justify-content: center;
+            z-index: 10;
         }
 
-        .header h1 {
-            margin: 0;
+        .header-badge {
+            background-color: #A31D24; /* Màu đỏ đô sang trọng */
+            color: #FFFFFF;
             font-family: 'Playfair Display', serif;
-            font-size: 30px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
+            font-size: 32px;
             font-weight: 700;
-            color: var(--pnj-gold);
-            text-shadow: 1px 2px 4px rgba(0,0,0,0.4);
-            transform: translateX(-30px); 
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 10px 50px;
+            border-radius: 50px;
+            margin: 0;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-style: italic;
+            font-weight: 500;
+            color: #E2E8F0; /* Màu sáng để nổi bật trên nền xanh */
+            margin: 8px 0 0 0;
+            letter-spacing: 0.5px;
+        }
+
+        /* Thanh Tìm Kiếm */
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input {
+            padding: 10px 15px 10px 40px;
+            border-radius: 25px;
+            border: 1px solid var(--pnj-gold);
+            outline: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            background-color: rgba(255, 255, 255, 0.95);
+            /* Icon kính lúp SVG nội tuyến */
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23003366" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: 15px center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 220px;
+            color: var(--pnj-blue);
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .search-input::placeholder {
+            color: #999;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
+            width: 280px;
+            background-color: #fff;
         }
 
         /* Vùng chứa Video */
@@ -82,7 +139,7 @@
             background-color: rgba(255, 255, 255, 0.85);
             border-radius: 16px;
             overflow: hidden;
-            border: 1px solid rgba(212, 175, 55, 0.3); /* Viền vàng nhạt tinh tế */
+            border: 1px solid rgba(212, 175, 55, 0.3);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             backdrop-filter: blur(10px);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -123,7 +180,6 @@
             justify-content: center;
         }
 
-        /* Nét gạch trang trí màu vàng */
         .video-info::before {
             content: '';
             display: block;
@@ -151,26 +207,64 @@
         }
 
         /* Responsive cho Mobile & Tablet */
+        @media (max-width: 1000px) {
+            .header-badge {
+                font-size: 26px;
+                padding: 8px 40px;
+            }
+            .header-subtitle {
+                font-size: 13px;
+            }
+            .search-input {
+                width: 180px;
+            }
+            .search-input:focus {
+                width: 220px;
+            }
+        }
+
         @media (max-width: 900px) {
             .video-container {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 25px;
             }
-            .header h1 {
-                font-size: 22px;
-                transform: translateX(-20px); 
+            .header {
+                padding: 15px 20px;
             }
             .header .logo {
-                height: 50px;
+                height: 65px;
             }
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 650px) {
             .video-container {
                 grid-template-columns: 1fr;
             }
-            .header h1 {
-                font-size: 18px;
+            .header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .header .title-container {
+                position: relative;
+                left: auto;
+                transform: none;
+                margin-bottom: 5px;
+            }
+            .header-badge {
+                font-size: 22px;
+                padding: 8px 30px;
+            }
+            .header-subtitle {
+                font-size: 12px;
+                margin-top: 8px;
+            }
+            .search-input {
+                width: 100%;
+                max-width: 300px;
+            }
+            .search-input:focus {
+                width: 100%;
+                max-width: 350px;
             }
         }
     </style>
@@ -181,12 +275,16 @@
     <header class="header">
         <img src="logoPNJ_TRANG.png" alt="PNJ Logo" class="logo">
         <div class="title-container">
-            <h1>Thư viện Video</h1>
+            <h1 class="header-badge">Thư viện Video</h1>
+            <p class="header-subtitle">Công cụ hỗ trợ TVV tư vấn bán hàng</p>
+        </div>
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Tìm tên hoặc mã SP...">
         </div>
     </header>
 
     <!-- Grid Videos -->
-    <main class="video-container">
+    <main class="video-container" id="videoContainer">
         <!-- Video 1 -->
         <div class="video-card">
             <div class="video-wrapper">
@@ -272,5 +370,29 @@
         </div>
     </main>
 
+    <!-- Script xử lý tìm kiếm Video -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const videoCards = document.querySelectorAll('.video-card');
+
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.trim().toLowerCase();
+
+                videoCards.forEach(card => {
+                    // Lấy nội dung của tên video và mã SP
+                    const title = card.querySelector('h3').textContent.toLowerCase();
+                    const code = card.querySelector('p').textContent.toLowerCase();
+
+                    // Nếu từ khóa xuất hiện trong tên hoặc mã, hiển thị card đó, ngược lại ẩn đi
+                    if (title.includes(searchTerm) || code.includes(searchTerm)) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
