@@ -10,8 +10,10 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #002d5e;
+            background-color: #fff9e6; /* Nền vàng nhạt sáng trọng */
         }
+        .pnj-blue { color: #002d5e; }
+        .pnj-blue-bg { background-color: #002d5e; }
         .gold-text { color: #d4af37; }
         .gold-bg { background-color: #d4af37; }
         .gold-border { border-color: rgba(212, 175, 55, 0.4); }
@@ -19,14 +21,15 @@
         
         .video-card {
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background-color: #ffffff;
         }
         .video-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 45, 94, 0.1);
         }
 
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #001f3f; }
+        ::-webkit-scrollbar-track { background: #fdf2d1; }
         ::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 10px; }
         
         .line-clamp-1 {
@@ -37,20 +40,19 @@
         }
 
         .glass-effect {
-            background: rgba(0, 31, 63, 0.7);
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(10px);
         }
     </style>
 </head>
-<body class="text-slate-100 min-h-screen flex flex-col md:flex-row overflow-hidden">
+<body class="text-[#002d5e] min-h-screen flex flex-col md:flex-row overflow-hidden">
 
-    <!-- Sidebar -->
-    <aside class="w-full md:w-64 bg-[#001f3f] border-r gold-border p-6 flex flex-col hidden md:flex">
-        <div class="flex items-center gap-3 mb-10">
-            <div class="w-10 h-10 gold-bg rounded-full flex items-center justify-center text-[#002d5e]">
-                <i data-lucide="gem" class="w-6 h-6"></i>
-            </div>
-            <h1 class="serif-font text-xl gold-text tracking-widest uppercase">PNJ Archive</h1>
+    <!-- Sidebar (Giữ màu tối để tương phản) -->
+    <aside class="w-full md:w-64 bg-[#001f3f] border-r gold-border p-6 flex flex-col hidden md:flex shadow-2xl z-20">
+        <!-- Logo Section -->
+        <div class="flex flex-col items-start gap-4 mb-10">
+            <img src="logoPNJ_TRANG.png" alt="PNJ Logo" class="w-16 h-auto object-contain filter drop-shadow-lg">
+            <h1 class="serif-font text-xl gold-text tracking-widest uppercase border-t gold-border pt-4 w-full">PNJ Archive</h1>
         </div>
 
         <nav class="space-y-2 flex-1">
@@ -66,7 +68,7 @@
         </nav>
 
         <div class="mt-auto pt-6 border-t gold-border">
-            <div class="p-3 glass-effect rounded-2xl border gold-border">
+            <div class="p-3 bg-white/5 rounded-2xl border border-white/10">
                 <p class="text-[10px] text-slate-500 uppercase mb-1">Dung lượng bộ nhớ</p>
                 <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
                     <div class="bg-amber-500 h-full" style="width: 45%"></div>
@@ -77,23 +79,29 @@
     </aside>
 
     <!-- Main Content -->
-    <main class="flex-1 flex flex-col h-screen overflow-hidden">
-        <!-- Header -->
-        <header class="p-6 bg-[#002d5e]/90 backdrop-blur-md border-b gold-border z-10 shadow-xl">
+    <main class="flex-1 flex flex-col h-screen overflow-hidden bg-[#fff9e6]">
+        <!-- Header sáng -->
+        <header class="p-6 bg-[#fff9e6]/90 backdrop-blur-md border-b gold-border z-10 shadow-sm">
             <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-                <div>
-                    <h2 class="serif-font text-3xl gold-text uppercase tracking-tight">Luxury Video Library</h2>
-                    <p class="text-slate-400 text-xs">Thư viện lưu trữ 22 thước phim sản phẩm PNJ cao cấp.</p>
+                <div class="flex items-center gap-4">
+                    <!-- Mobile Logo -->
+                    <div class="p-2 pnj-blue-bg rounded-lg md:hidden">
+                        <img src="logoPNJ_TRANG.png" alt="PNJ Logo" class="w-8 h-auto">
+                    </div>
+                    <div>
+                        <h2 class="serif-font text-3xl pnj-blue uppercase tracking-tight">THƯ VIỆN VIDEO</h2>
+                        <p class="text-slate-500 text-xs italic">Thư viện lưu trữ 22 thước phim sản phẩm PNJ cao cấp.</p>
+                    </div>
                 </div>
                 
                 <div class="flex items-center gap-3">
                     <div class="relative">
-                        <input type="text" id="searchInput" onkeyup="filterVideos()" placeholder="Tìm mã sản phẩm..." class="bg-[#001f3f] border gold-border rounded-full py-2 px-10 focus:outline-none focus:ring-1 focus:ring-amber-500 text-sm w-48 md:w-64 text-white">
-                        <i data-lucide="search" class="absolute left-3 top-2.5 w-4 h-4 text-slate-500"></i>
+                        <input type="text" id="searchInput" onkeyup="filterVideos()" placeholder="Tìm mã sản phẩm..." class="bg-white border gold-border rounded-full py-2 px-10 focus:outline-none focus:ring-1 focus:ring-amber-500 text-sm w-48 md:w-64 text-[#002d5e] shadow-inner">
+                        <i data-lucide="search" class="absolute left-3 top-2.5 w-4 h-4 text-slate-400"></i>
                     </div>
-                    <div class="flex items-center gap-2 bg-[#001f3f] px-4 py-2 rounded-full border gold-border">
-                        <span id="totalClips" class="text-sm font-bold gold-text">22</span>
-                        <span class="text-[10px] text-slate-500 uppercase">Clips</span>
+                    <div class="flex items-center gap-2 bg-white px-4 py-2 rounded-full border gold-border shadow-sm">
+                        <span id="totalClips" class="text-sm font-bold pnj-blue">22</span>
+                        <span class="text-[10px] text-slate-400 uppercase font-bold">Clips</span>
                     </div>
                 </div>
             </div>
@@ -110,7 +118,6 @@
     </main>
 
     <script>
-        // Danh sách 22 video theo tên từ hình ảnh
         const videoTitles = [
             "GB0000W002980", "GBXMXMW003718", "GBXMXMW003741", "GBXMXMW003806", 
             "GBXMXMY011060", "GBXMXMY011061", "GC0000C000061", "GI0000Y000730", 
@@ -120,14 +127,12 @@
             "SNZT00W000033", "SNZTXMW000047"
         ];
 
-        // Tạo dữ liệu cho 22 video
         const videoData = videoTitles.map((title, index) => ({
             id: index + 1,
             title: title,
             tech: title.startsWith('S') ? 'Silver Collection' : 'Gold Jewelry',
             date: "24/03/2026",
             views: Math.floor(Math.random() * 200) + 20,
-            // Link video mẫu - Bạn hãy thay link thực tế của bạn tại đây
             url: "https://assets.mixkit.co/videos/preview/mixkit-close-up-of-a-woman-showing-a-ring-43343-large.mp4" 
         }));
 
@@ -137,45 +142,42 @@
             videoGrid.innerHTML = '';
             data.forEach(video => {
                 const card = document.createElement('div');
-                card.className = "video-card bg-[#001f3f] rounded-3xl overflow-hidden border gold-border group relative flex flex-col h-full";
+                card.className = "video-card rounded-3xl overflow-hidden border gold-border group relative flex flex-col h-full shadow-lg shadow-amber-900/5";
                 card.innerHTML = `
-                    <div class="relative aspect-[9/16] bg-black flex items-center justify-center overflow-hidden">
-                        <video id="video-${video.id}" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity duration-500" 
+                    <div class="relative aspect-[9/16] bg-[#001f3f] flex items-center justify-center overflow-hidden">
+                        <video id="video-${video.id}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" 
                                muted loop onmouseover="this.play(); handleView(${video.id})" onmouseout="this.pause()">
                             <source src="${video.url}" type="video/mp4">
                         </video>
                         
-                        <!-- Gradient Overlay -->
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#001f3f] via-transparent to-transparent opacity-60"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60"></div>
 
-                        <!-- Top Badge -->
                         <div class="absolute top-4 left-4">
-                            <span class="text-[9px] font-bold px-2 py-1 rounded-full glass-effect border gold-border uppercase tracking-widest text-amber-500">Premium</span>
+                            <span class="text-[9px] font-bold px-2 py-1 rounded-full glass-effect border gold-border uppercase tracking-widest text-amber-600">Premium</span>
                         </div>
 
-                        <!-- View Count Badge -->
-                        <div class="absolute top-4 right-4 flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10">
+                        <div class="absolute top-4 right-4 flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 text-white">
                             <i data-lucide="eye" class="w-3 h-3 gold-text"></i>
                             <span id="views-${video.id}" class="text-[10px] font-semibold">${video.views}</span>
                         </div>
 
-                        <!-- Play Button Overlay -->
                         <div class="absolute inset-0 m-auto w-14 h-14 gold-bg text-[#002d5e] rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all scale-75 group-hover:scale-100 pointer-events-none shadow-2xl">
                             <i data-lucide="play" class="w-6 h-6 fill-current"></i>
                         </div>
                     </div>
 
                     <div class="p-5 flex flex-col flex-1">
-                        <h3 class="serif-font text-lg gold-text mb-1 tracking-tight group-hover:text-white transition-colors uppercase">${video.title}</h3>
-                        <p class="text-[10px] text-slate-500 mb-4 flex items-center gap-1 uppercase tracking-widest font-semibold">
-                            <i data-lucide="tag" class="w-3 h-3"></i> ${video.tech}
+                        <h3 class="serif-font text-lg pnj-blue mb-1 tracking-tight group-hover:gold-text transition-colors uppercase">${video.title}</h3>
+                        <p class="text-[10px] text-slate-400 mb-4 flex items-center gap-1 uppercase tracking-widest font-bold">
+                            <i data-lucide="tag" class="w-3 h-3 text-amber-500"></i> ${video.tech}
                         </p>
                         
-                        <div class="mt-auto pt-4 border-t border-white/5 flex justify-between items-center">
-                            <div class="flex -space-x-2">
-                                <div class="w-6 h-6 rounded-full border border-[#001f3f] bg-slate-700 flex items-center justify-center text-[8px]">PNJ</div>
+                        <div class="mt-auto pt-4 border-t border-slate-100 flex justify-between items-center">
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 rounded-full pnj-blue-bg flex items-center justify-center text-[7px] text-white font-bold">PNJ</div>
+                                <span class="text-[9px] text-slate-400 font-medium">${video.date}</span>
                             </div>
-                            <button class="hover:text-amber-400 transition-colors text-slate-400">
+                            <button class="hover:text-amber-500 transition-colors text-slate-300">
                                 <i data-lucide="download" class="w-4 h-4"></i>
                             </button>
                         </div>
@@ -186,7 +188,6 @@
             lucide.createIcons();
         }
 
-        // Xử lý đếm lượt xem (giả lập và lưu trạng thái phiên)
         function handleView(id) {
             const storageKey = `viewed_session_${id}`;
             if (!sessionStorage.getItem(storageKey)) {
@@ -196,20 +197,16 @@
                 viewSpan.innerText = count;
                 viewSpan.classList.add('gold-text', 'scale-110');
                 sessionStorage.setItem(storageKey, "true");
-                
-                // Hiệu ứng nhảy số
                 setTimeout(() => viewSpan.classList.remove('scale-110'), 300);
             }
         }
 
-        // Tìm kiếm video
         function filterVideos() {
             const query = document.getElementById('searchInput').value.toLowerCase();
             const filtered = videoData.filter(v => v.title.toLowerCase().includes(query));
             renderVideos(filtered);
         }
 
-        // Khởi tạo Dashboard
         window.onload = () => {
             renderVideos(videoData);
             document.getElementById('totalClips').innerText = videoData.length;
