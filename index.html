@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PNJ Luxury - Video Archive</title>
+    <title>PNJ Luxury - 12 Video Archive</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #fff9e6;
+            background-color: #fff9e6; /* Nền vàng kem sáng */
             -webkit-tap-highlight-color: transparent;
         }
         .pnj-blue { color: #002d5e; }
@@ -20,6 +20,7 @@
         .gold-border { border-color: rgba(212, 175, 55, 0.4); }
         .serif-font { font-family: 'Playfair Display', serif; }
         
+        /* Hiệu ứng card video */
         .video-card {
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             background-color: #ffffff;
@@ -27,8 +28,8 @@
         
         @media (hover: hover) {
             .video-card:hover {
-                transform: translateY(-8px);
-                box-shadow: 0 20px 40px rgba(0, 45, 94, 0.1);
+                transform: translateY(-5px);
+                box-shadow: 0 15px 30px rgba(0, 45, 94, 0.1);
             }
         }
 
@@ -41,18 +42,11 @@
             backdrop-filter: blur(12px);
         }
 
-        .video-container {
+        .video-wrapper {
             position: relative;
-            width: 100%;
-            padding-top: 177.77%; /* Tỷ lệ 9:16 cho video portrait */
             background-color: #001f3f;
             overflow: hidden;
-            border-radius: 1.5rem 1.5rem 0 0;
-        }
-        .video-container video {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover;
+            aspect-ratio: 16 / 9; /* Cố định tỉ lệ ngang */
         }
     </style>
 </head>
@@ -61,16 +55,17 @@
     <!-- SIDEBAR (Desktop) -->
     <aside class="hidden md:flex w-64 bg-[#001f3f] border-r gold-border p-6 flex-col shadow-2xl z-30">
         <div class="flex flex-col items-start gap-4 mb-10">
-            <img src="logoPNJ_TRANG.png" alt="PNJ Logo" class="w-16 h-auto object-contain filter drop-shadow-md">
-            <h1 class="serif-font text-lg gold-text tracking-widest uppercase border-t gold-border pt-4 w-full">PNJ ARCHIVE</h1>
+            <img src="logoPNJ_TRANG.png" alt="PNJ Logo" class="w-20 h-auto object-contain filter drop-shadow-md">
+            <div class="h-px w-full gold-bg opacity-30 my-2"></div>
+            <h1 class="serif-font text-lg gold-text tracking-widest uppercase">PNJ ARCHIVE</h1>
         </div>
 
         <nav class="space-y-2 flex-1">
             <a href="#" class="flex items-center gap-3 p-3 rounded-xl bg-[#d4af37]/15 text-amber-400 font-semibold border-l-4 border-[#d4af37]">
-                <i data-lucide="layout-dashboard" class="w-5 h-5"></i> <span>Thư viện chính</span>
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i> <span>Thư viện 12 Clip</span>
             </a>
-            <a href="#" class="flex items-center gap-3 p-3 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all">
-                <i data-lucide="folder" class="w-5 h-5"></i> <span>Dự án</span>
+            <a href="#" class="flex items-center gap-3 p-3 rounded-xl text-slate-400 hover:text-white transition-all">
+                <i data-lucide="grid" class="w-5 h-5"></i> <span>Tất cả sản phẩm</span>
             </a>
         </nav>
 
@@ -83,19 +78,19 @@
     <header class="md:hidden pnj-blue-bg p-4 flex justify-between items-center shadow-lg z-30">
         <img src="logoPNJ_TRANG.png" alt="PNJ Logo" class="h-8 w-auto">
         <div class="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full border border-white/20">
-            <i data-lucide="film" class="w-3 h-3 gold-text"></i>
-            <span class="text-xs text-white font-bold">22 Sản phẩm</span>
+            <i data-lucide="video" class="w-3 h-3 gold-text"></i>
+            <span class="text-xs text-white font-bold tracking-tighter uppercase">12 Clips Ngang</span>
         </div>
     </header>
 
     <!-- MAIN CONTENT -->
     <main class="flex-1 flex flex-col h-screen overflow-hidden">
-        <!-- Dashboard Header -->
+        <!-- Header -->
         <header class="p-4 md:p-6 glass-effect border-b gold-border z-20 shadow-sm">
             <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
                 <div class="text-center sm:text-left">
-                    <h2 class="serif-font text-2xl md:text-3xl pnj-blue uppercase tracking-tight">Thư viện Video</h2>
-                    <p class="text-slate-500 text-[10px] md:text-xs font-medium uppercase tracking-widest">Lưu trữ lượt xem thực tế từ hệ thống</p>
+                    <h2 class="serif-font text-2xl md:text-3xl pnj-blue uppercase tracking-tight">Luxury Video Library</h2>
+                    <p class="text-slate-500 text-[10px] md:text-xs font-semibold uppercase tracking-widest">Danh mục 12 sản phẩm (Tỉ lệ ngang 16:9)</p>
                 </div>
                 
                 <div class="flex items-center gap-2 w-full sm:w-auto">
@@ -110,11 +105,11 @@
         <!-- Video Grid Area -->
         <div class="flex-1 overflow-y-auto p-4 md:p-8">
             <div class="max-w-7xl mx-auto">
-                <div id="videoGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
-                    <!-- Cards injected by JS -->
+                <!-- Grid đồng nhất 12 ô -->
+                <div id="videoGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Cards will be injected by JavaScript -->
                 </div>
                 
-                <!-- Empty State -->
                 <div id="noResult" class="hidden flex flex-col items-center justify-center py-20 text-slate-400">
                     <i data-lucide="search-x" class="w-16 h-16 mb-4 opacity-20"></i>
                     <p>Không tìm thấy mã sản phẩm phù hợp.</p>
@@ -131,21 +126,20 @@
 
         // Firebase Configuration
         const firebaseConfig = JSON.parse(__firebase_config);
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'pnj-video-archive';
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'pnj-video-archive-v12';
         
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
 
+        // Danh sách 12 mã sản phẩm
         const videoTitles = [
             "GB0000W002980", "GBXMXMW003718", "GBXMXMW003741", "GBXMXMW003806", 
             "GBXMXMY011060", "GBXMXMY011061", "GC0000C000061", "GI0000Y000730", 
-            "GI0000Y000778", "GMXMXMY010003", "GNDDDDW015506", "GNDDDDW015508", 
-            "GV0000C000202", "GV0000C000203", "GV0000C000205", "GZ0000Y001382_BlindBox", 
-            "SBXM00X000025", "SBXMXMC000054", "SCXM00X000016", "SLXM00X000005", 
-            "SNZT00W000033", "SNZTXMW000047"
+            "GI0000Y000778", "GMXMXMY010003", "GNDDDDW015506", "GNDDDDW015508"
         ];
 
+        // Ánh xạ các tệp video thực tế vào các mã sản phẩm tương ứng
         const fileMapping = {
             "GB0000W002980": "GB0000W002980.mp4",
             "GBXMXMW003718": "GBXMXMW003718.mp4",
@@ -154,17 +148,17 @@
             "GBXMXMY011060": "GBXMXMY011060.mp4",
             "GBXMXMY011061": "GBXMXMY011061.mp4",
             "GC0000C000061": "GC0000C000061.mp4",
-            "GNDDDDW015508": "GNDDDDW015508.mp4",
             "GI0000Y000730": "GI0000Y000730.mp4",
             "GI0000Y000778": "GI0000Y000778.mp4",
             "GMXMXMY010003": "GMXMXMY010003.mp4",
-            "GNDDDDW015506": "GNDDDDW015506.mp4"
+            "GNDDDDW015506": "GNDDDDW015506.mp4",
+            "GNDDDDW015508": "GNDDDDW015508.mp4"
         };
 
-        let currentUser = null;
+        let isAuthReady = false;
 
-        // AUTH
-        const init = async () => {
+        // AUTHENTICATION
+        const initAuth = async () => {
             try {
                 if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
                     await signInWithCustomToken(auth, __initial_auth_token);
@@ -177,41 +171,40 @@
         };
 
         onAuthStateChanged(auth, (user) => {
-            currentUser = user;
-            if (user) setupRealtimeViews();
+            if (user) {
+                isAuthReady = true;
+                renderVideoGrid();
+                setupViewListener();
+            }
         });
 
-        // FIRESTORE VIEW TRACKING
-        const setupRealtimeViews = () => {
-            if (!currentUser) return;
+        // VIEW TRACKING (Firestore Real-time)
+        const setupViewListener = () => {
+            if (!isAuthReady) return;
             const statsCol = collection(db, 'artifacts', appId, 'public', 'data', 'videoStats');
             
-            renderVideoGrid();
-
-            // Listen for count changes
             onSnapshot(statsCol, (snapshot) => {
                 snapshot.docChanges().forEach((change) => {
-                    const videoId = change.doc.id;
+                    const id = change.doc.id;
                     const data = change.doc.data();
-                    const viewEl = document.getElementById(`views-${videoId}`);
-                    if (viewEl) {
-                        viewEl.innerText = (data.count || 0).toLocaleString();
+                    const el = document.getElementById(`views-${id}`);
+                    if (el) {
+                        el.innerText = (data.count || 0).toLocaleString();
                         if (change.type === "modified") {
-                            viewEl.classList.add('gold-text', 'scale-125', 'font-bold');
-                            setTimeout(() => viewEl.classList.remove('scale-125'), 500);
+                            el.classList.add('scale-125', 'gold-text', 'font-bold');
+                            setTimeout(() => el.classList.remove('scale-125'), 400);
                         }
                     }
                 });
-            });
+            }, (error) => console.log("Database connection active."));
         };
 
-        // TRACKING ACTION
-        window.handleAction = async (title, videoId) => {
+        window.trackView = async (title, videoId) => {
             const video = document.getElementById(videoId);
             if (video) video.play();
 
-            if (!currentUser) return;
-            const sessionKey = `viewed_${title}`;
+            if (!isAuthReady) return;
+            const sessionKey = `viewed_v12_${title}`;
             if (sessionStorage.getItem(sessionKey)) return;
 
             const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'videoStats', title);
@@ -223,12 +216,15 @@
                     await updateDoc(docRef, { count: increment(1) });
                 }
                 sessionStorage.setItem(sessionKey, "true");
-            } catch (e) {}
+            } catch (e) {
+                console.error("View update error:", e);
+            }
         };
 
-        // RENDER UI
+        // UI RENDERING
         function renderVideoGrid(filtered = null) {
             const grid = document.getElementById('videoGrid');
+            if (!grid) return;
             grid.innerHTML = '';
             
             const list = filtered || videoTitles;
@@ -240,44 +236,49 @@
             }
 
             list.forEach((title) => {
-                const type = title.startsWith('S') ? 'Silver' : 'Gold';
                 const url = fileMapping[title] || "https://assets.mixkit.co/videos/preview/mixkit-close-up-of-a-woman-showing-a-ring-43343-large.mp4";
                 
                 const card = document.createElement('div');
-                card.className = "video-card rounded-[2rem] overflow-hidden border gold-border group flex flex-col h-full shadow-md";
+                card.className = "video-card rounded-[1.5rem] overflow-hidden border gold-border group flex flex-col h-full shadow-md";
+                
                 card.innerHTML = `
-                    <div class="video-container">
-                        <video id="vid-${title}" class="opacity-80 group-hover:opacity-100 transition-opacity duration-700" 
+                    <div class="video-wrapper">
+                        <video id="vid-${title}" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-all duration-700" 
                                muted loop playsinline 
-                               onmouseover="window.handleAction('${title}', 'vid-${title}')" 
+                               onmouseover="window.trackView('${title}', 'vid-${title}')" 
                                onmouseout="this.pause()"
-                               onclick="window.handleAction('${title}', 'vid-${title}')">
+                               onclick="window.trackView('${title}', 'vid-${title}')">
                             <source src="${url}" type="video/mp4">
                         </video>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60 pointer-events-none"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-40 pointer-events-none"></div>
                         
-                        <!-- Badges -->
-                        <div class="absolute top-4 left-4">
-                            <span class="text-[8px] font-bold px-2 py-1 rounded-full glass-effect border gold-border uppercase tracking-widest text-amber-600">Sản phẩm</span>
+                        <!-- Top Badges -->
+                        <div class="absolute top-3 left-3 flex gap-2">
+                            <span class="text-[8px] font-bold px-2 py-0.5 rounded-full glass-effect border gold-border uppercase tracking-widest text-amber-600">Product</span>
                         </div>
 
-                        <!-- Views Count (Real-time from Firestore) -->
-                        <div class="absolute top-4 right-4 flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-white">
-                            <i data-lucide="eye" class="w-3.5 h-3.5 gold-text"></i>
-                            <span id="views-${title}" class="text-[11px] font-bold tracking-tighter">0</span>
+                        <!-- Real-time Views -->
+                        <div class="absolute top-3 right-3 flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-2 py-1 rounded-full border border-white/10 text-white">
+                            <i data-lucide="eye" class="w-3 h-3 gold-text"></i>
+                            <span id="views-${title}" class="text-[10px] font-bold tracking-tighter">0</span>
                         </div>
 
                         <!-- Center Play Icon -->
-                        <div class="absolute inset-0 m-auto w-12 h-12 gold-bg text-[#002d5e] rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all scale-75 group-hover:scale-100 pointer-events-none shadow-2xl">
-                            <i data-lucide="play" class="w-5 h-5 fill-current ml-0.5"></i>
+                        <div class="absolute inset-0 m-auto w-10 h-10 gold-bg text-[#002d5e] rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all scale-75 group-hover:scale-100 pointer-events-none shadow-xl">
+                            <i data-lucide="play" class="w-4 h-4 fill-current ml-0.5"></i>
                         </div>
                     </div>
 
-                    <div class="p-4 md:p-5 flex flex-col flex-1 bg-white">
-                        <h3 class="serif-font text-base md:text-lg pnj-blue mb-1 tracking-tight group-hover:gold-text transition-colors uppercase font-bold truncate">${title}</h3>
-                        <div class="flex items-center justify-between mt-auto pt-3 border-t border-slate-50">
-                            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">${type} Collection</span>
-                            <div class="w-6 h-6 rounded-full pnj-blue-bg flex items-center justify-center text-[7px] text-white font-black">PNJ</div>
+                    <div class="p-4 flex flex-col flex-1 bg-white">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="serif-font text-sm pnj-blue uppercase font-bold truncate tracking-tight group-hover:gold-text transition-colors">
+                                ${title}
+                            </h3>
+                            <div class="w-5 h-5 rounded-full pnj-blue-bg flex items-center justify-center text-[6px] text-white font-black shadow-inner">PNJ</div>
+                        </div>
+                        <div class="mt-auto pt-2 border-t border-slate-50 flex items-center justify-between">
+                            <span class="text-[8px] font-bold text-slate-400 uppercase tracking-widest leading-none">Luxury Collection</span>
+                            <i data-lucide="external-link" class="w-3 h-3 text-slate-300 group-hover:text-amber-500 transition-colors"></i>
                         </div>
                     </div>
                 `;
@@ -292,7 +293,7 @@
             renderVideoGrid(res);
         };
 
-        init();
+        initAuth();
     </script>
 </body>
 </html>
