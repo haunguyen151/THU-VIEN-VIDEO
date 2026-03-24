@@ -167,6 +167,44 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            cursor: pointer;
+        }
+
+        /* --- Nút Play tùy chỉnh ở giữa video --- */
+        .play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background-color: rgba(163, 29, 36, 0.85); /* Màu đỏ đô PNJ */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none; /* Click xuyên qua xuống lớp video */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .play-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: #FFFFFF;
+            margin-left: 4px; /* Cân bằng thị giác cho icon tam giác */
+        }
+
+        .video-wrapper:hover .play-btn {
+            background-color: rgba(163, 29, 36, 1);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .video-wrapper.is-playing .play-btn {
+            opacity: 0;
+            visibility: hidden;
+            transform: translate(-50%, -50%) scale(0.5);
         }
 
         .video-info {
@@ -288,10 +326,13 @@
         <!-- Video 1 -->
         <div class="video-card">
             <div class="video-wrapper">
-                <video controls preload="metadata">
+                <video preload="metadata" muted loop>
                     <source src="GB0000W002980.mp4" type="video/mp4">
                     Trình duyệt của bạn không hỗ trợ thẻ video.
                 </video>
+                <div class="play-btn">
+                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
             </div>
             <div class="video-info">
                 <h3>Bông Tai Trẻ Em Cinnamoroll</h3>
@@ -302,10 +343,13 @@
         <!-- Video 2 -->
         <div class="video-card">
             <div class="video-wrapper">
-                <video controls preload="metadata">
+                <video preload="metadata" muted loop>
                     <source src="GBXMXMW003718.mp4" type="video/mp4">
                     Trình duyệt của bạn không hỗ trợ thẻ video.
                 </video>
+                <div class="play-btn">
+                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
             </div>
             <div class="video-info">
                 <h3>Bông Tai Vàng Trắng 10K Trái Tim</h3>
@@ -316,10 +360,13 @@
         <!-- Video 3 -->
         <div class="video-card">
             <div class="video-wrapper">
-                <video controls preload="metadata">
+                <video preload="metadata" muted loop>
                     <source src="GBXMXMW003741.mp4" type="video/mp4">
                     Trình duyệt của bạn không hỗ trợ thẻ video.
                 </video>
+                <div class="play-btn">
+                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
             </div>
             <div class="video-info">
                 <h3>Bông Tai Vàng Trắng 10K Hoa Tinh Tế</h3>
@@ -330,10 +377,13 @@
         <!-- Video 4 -->
         <div class="video-card">
             <div class="video-wrapper">
-                <video controls preload="metadata">
+                <video preload="metadata" muted loop>
                     <source src="GBXMXMW003806.mp4" type="video/mp4">
                     Trình duyệt của bạn không hỗ trợ thẻ video.
                 </video>
+                <div class="play-btn">
+                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
             </div>
             <div class="video-info">
                 <h3>Bông Tai Trẻ Em Khuyên Tròn Cinnamoroll</h3>
@@ -344,10 +394,13 @@
         <!-- Video 5 -->
         <div class="video-card">
             <div class="video-wrapper">
-                <video controls preload="metadata">
+                <video preload="metadata" muted loop>
                     <source src="GBXMXMY011060.mp4" type="video/mp4">
                     Trình duyệt của bạn không hỗ trợ thẻ video.
                 </video>
+                <div class="play-btn">
+                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
             </div>
             <div class="video-info">
                 <h3>Bông Tai Vàng 18K Khóa Trái Tim Đôi</h3>
@@ -358,10 +411,13 @@
         <!-- Video 6 -->
         <div class="video-card">
             <div class="video-wrapper">
-                <video controls preload="metadata">
+                <video preload="metadata" muted loop>
                     <source src="GBXMXMY011061.mp4" type="video/mp4">
                     Trình duyệt của bạn không hỗ trợ thẻ video.
                 </video>
+                <div class="play-btn">
+                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
             </div>
             <div class="video-info">
                 <h3>Bông Tai Vàng 18K Chìa Và Ổ Khóa Trái Tim</h3>
@@ -370,9 +426,10 @@
         </div>
     </main>
 
-    <!-- Script xử lý tìm kiếm Video -->
+    <!-- Script xử lý tìm kiếm và Video -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // --- XỬ LÝ TÌM KIẾM ---
             const searchInput = document.getElementById('searchInput');
             const videoCards = document.querySelectorAll('.video-card');
 
@@ -380,17 +437,59 @@
                 const searchTerm = this.value.trim().toLowerCase();
 
                 videoCards.forEach(card => {
-                    // Lấy nội dung của tên video và mã SP
                     const title = card.querySelector('h3').textContent.toLowerCase();
                     const code = card.querySelector('p').textContent.toLowerCase();
 
-                    // Nếu từ khóa xuất hiện trong tên hoặc mã, hiển thị card đó, ngược lại ẩn đi
                     if (title.includes(searchTerm) || code.includes(searchTerm)) {
                         card.style.display = 'flex';
                     } else {
                         card.style.display = 'none';
                     }
                 });
+            });
+
+            // --- XỬ LÝ NÚT PLAY VÀ AUTO-PLAY KHI HOVER ---
+            const videoWrappers = document.querySelectorAll('.video-wrapper');
+            // Kiểm tra xem thiết bị có dùng chuột không (Desktop)
+            const isDesktop = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+            videoWrappers.forEach(wrapper => {
+                const video = wrapper.querySelector('video');
+
+                // Cập nhật giao diện khi video chạy/dừng
+                video.addEventListener('play', () => {
+                    wrapper.classList.add('is-playing');
+                    video.controls = true; // Hiện thanh điều khiển khi phát
+                });
+
+                video.addEventListener('pause', () => {
+                    wrapper.classList.remove('is-playing');
+                    video.controls = false; // Ẩn thanh điều khiển để làm sạch giao diện
+                });
+
+                // Click vào video để play/pause (hỗ trợ cả mobile)
+                video.addEventListener('click', () => {
+                    if (video.paused) {
+                        video.play();
+                    } else {
+                        video.pause();
+                    }
+                });
+
+                // Nếu là Desktop, thêm tính năng hover để tự phát
+                if (isDesktop) {
+                    wrapper.addEventListener('mouseenter', () => {
+                        // Gọi hàm play()
+                        video.play().catch(err => {
+                            console.log('Trình duyệt chặn autoplay:', err);
+                        });
+                    });
+
+                    wrapper.addEventListener('mouseleave', () => {
+                        // Tạm dừng khi chuột rời đi
+                        video.pause();
+                    });
+                }
             });
         });
     </script>
