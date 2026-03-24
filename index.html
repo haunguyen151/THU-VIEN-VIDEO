@@ -278,6 +278,37 @@
             font-weight: 500;
         }
 
+        /* --- Nút Tải Xuống (Download) --- */
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 15px;
+            padding: 8px 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--pnj-blue);
+            text-decoration: none;
+            border: 1.5px solid var(--pnj-blue);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            gap: 8px;
+        }
+
+        .download-btn:hover {
+            background-color: var(--pnj-blue);
+            color: var(--white);
+            box-shadow: 0 4px 10px rgba(0, 51, 102, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .download-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
         /* Responsive cho Mobile & Tablet */
         @media (max-width: 1000px) {
             .header-badge {
@@ -373,6 +404,15 @@
                 width: 12px;
                 height: 12px;
             }
+            .download-btn {
+                margin-top: 10px;
+                padding: 6px 14px;
+                font-size: 11px;
+            }
+            .download-btn svg {
+                width: 14px;
+                height: 14px;
+            }
         }
     </style>
 </head>
@@ -411,6 +451,10 @@
             <div class="video-info">
                 <h3>Bông Tai Trẻ Em Cinnamoroll</h3>
                 <p>Mã SP: GB0000W002980</p>
+                <a href="GB0000W002980.mp4" download="GB0000W002980.mp4" class="download-btn">
+                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    Tải video
+                </a>
             </div>
         </div>
 
@@ -432,6 +476,10 @@
             <div class="video-info">
                 <h3>Bông Tai Vàng Trắng 10K Trái Tim</h3>
                 <p>Mã SP: GBXMXMW003718</p>
+                <a href="GBXMXMW003718.mp4" download="GBXMXMW003718.mp4" class="download-btn">
+                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    Tải video
+                </a>
             </div>
         </div>
 
@@ -453,6 +501,10 @@
             <div class="video-info">
                 <h3>Bông Tai Vàng Trắng 10K Hoa Tinh Tế</h3>
                 <p>Mã SP: GBXMXMW003741</p>
+                <a href="GBXMXMW003741.mp4" download="GBXMXMW003741.mp4" class="download-btn">
+                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    Tải video
+                </a>
             </div>
         </div>
 
@@ -474,6 +526,10 @@
             <div class="video-info">
                 <h3>Bông Tai Trẻ Em Khuyên Tròn Cinnamoroll</h3>
                 <p>Mã SP: GBXMXMW003806</p>
+                <a href="GBXMXMW003806.mp4" download="GBXMXMW003806.mp4" class="download-btn">
+                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    Tải video
+                </a>
             </div>
         </div>
 
@@ -495,6 +551,10 @@
             <div class="video-info">
                 <h3>Bông Tai Vàng 18K Khóa Trái Tim Đôi</h3>
                 <p>Mã SP: GBXMXMY011060</p>
+                <a href="GBXMXMY011060.mp4" download="GBXMXMY011060.mp4" class="download-btn">
+                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    Tải video
+                </a>
             </div>
         </div>
 
@@ -516,6 +576,10 @@
             <div class="video-info">
                 <h3>Bông Tai Vàng 18K Chìa Và Ổ Khóa Trái Tim</h3>
                 <p>Mã SP: GBXMXMY011061</p>
+                <a href="GBXMXMY011061.mp4" download="GBXMXMY011061.mp4" class="download-btn">
+                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    Tải video
+                </a>
             </div>
         </div>
 
@@ -537,6 +601,10 @@
             <div class="video-info">
                 <h3>Hạt Charm Vàng PNJ Turning Gold</h3>
                 <p>Mã SP: GI0000Y000730</p>
+                <a href="GI0000Y000730.mp4" download="GI0000Y000730.mp4" class="download-btn">
+                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    Tải video
+                </a>
             </div>
         </div>
 
@@ -558,6 +626,10 @@
             <div class="video-info">
                 <h3>Dây Cổ Vàng 10K Disney PNJ Donald</h3>
                 <p>Mã SP: GC0000C000061</p>
+                <a href="GC0000C000061.mp4" download="GC0000C000061.mp4" class="download-btn">
+                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    Tải video
+                </a>
             </div>
         </div>
 
@@ -579,6 +651,10 @@
             <div class="video-info">
                 <h3>Hạt Charm Trẻ Em Vàng 10K Cinnamoroll</h3>
                 <p>Mã SP: GI0000Y000778</p>
+                <a href="GI0000Y000778.mp4" download="GI0000Y000778.mp4" class="download-btn">
+                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    Tải video
+                </a>
             </div>
         </div>
 
@@ -600,6 +676,10 @@
             <div class="video-info">
                 <h3>Nhẫn Kim Cương Vàng Trắng 14K Only You</h3>
                 <p>Mã SP: GNDDDDW015508</p>
+                <a href="GNDDDDW015508.mp4" download="GNDDDDW015508.mp4" class="download-btn">
+                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    Tải video
+                </a>
             </div>
         </div>
 
@@ -621,6 +701,10 @@
             <div class="video-info">
                 <h3>Mặt Dây Chuyền Vàng 18K Đính Đá CZ</h3>
                 <p>Mã SP: GMXMXMY010003</p>
+                <a href="GMXMXMY010003.mp4" download="GMXMXMY010003.mp4" class="download-btn">
+                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    Tải video
+                </a>
             </div>
         </div>
 
@@ -642,6 +726,10 @@
             <div class="video-info">
                 <h3>Nhẫn Kim Cương Vàng Trắng 14K Only You</h3>
                 <p>Mã SP: GNDDDDW015506</p>
+                <a href="GNDDDDW015506.mp4" download="GNDDDDW015506.mp4" class="download-btn">
+                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    Tải video
+                </a>
             </div>
         </div>
     </main>
