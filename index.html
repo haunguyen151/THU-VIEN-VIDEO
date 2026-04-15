@@ -3,1233 +3,555 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thư viện Video - PNJ</title>
-    <!-- Thêm font chữ sang trọng từ Google Fonts -->
+    <title> PNJ Creative Hub - Team Content Report </title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        number: ['Bodoni Moda', 'serif'],
+                    },
+                    colors: {
+                        pnjBlue: '#003366',
+                        pnjGold: '#B8860B',
+                        pnjRed: '#9A161F',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,700;0,800;0,900;1,700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <style>
-        :root {
-            --pnj-blue: #003366;
-            --pnj-dark-blue: #001f40;
-            --pnj-gold: #D4AF37;
-            --white: #FFFFFF;
-            --text-main: #333333;
-            --text-muted: #666666;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            padding: 0;
-            /* Nền gradient ngọc trai - vàng champagne sang trọng */
-            background: radial-gradient(circle at top center, #ffffff 0%, #fdf8e9 40%, #f0e4c8 100%);
-            background-attachment: fixed;
-            color: var(--text-main);
-        }
-
-        /* Thanh Header */
-        .header {
-            background: linear-gradient(135deg, var(--pnj-dark-blue) 0%, var(--pnj-blue) 100%);
-            color: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px 40px;
-            box-shadow: 0 4px 20px rgba(0, 51, 102, 0.4);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 3px solid var(--pnj-gold);
-        }
-
-        .header .logo {
-            height: 85px; /* Scale logo to hơn */
-            width: auto;
-            object-fit: contain;
-            filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.3));
-            transition: transform 0.3s ease;
-        }
+        .font-serif-vi { font-family: 'Playfair Display', serif; }
+        .font-sans-vi { font-family: 'Montserrat', sans-serif; }
+        .font-number { font-family: 'Bodoni Moda', serif; font-weight: 900; }
         
-        .header .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .header .title-container {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-        }
-
-        .header-badge {
-            background-color: #A31D24; /* Màu đỏ đô sang trọng */
-            color: #FFFFFF;
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            padding: 10px 50px;
-            border-radius: 50px;
-            margin: 0;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .header-subtitle {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 14px;
-            font-style: italic;
-            font-weight: 500;
-            color: #E2E8F0; /* Màu sáng để nổi bật trên nền xanh */
-            margin: 8px 0 0 0;
-            letter-spacing: 0.5px;
-        }
-
-        /* Thanh Tìm Kiếm */
-        .search-container {
-            display: flex;
-            align-items: center;
-        }
-
-        .search-input {
-            padding: 10px 15px 10px 40px;
-            border-radius: 25px;
-            border: 1px solid var(--pnj-gold);
-            outline: none;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 14px;
-            background-color: rgba(255, 255, 255, 0.95);
-            /* Icon kính lúp SVG nội tuyến */
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23003366" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>');
-            background-repeat: no-repeat;
-            background-position: 15px center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            width: 220px;
-            color: var(--pnj-blue);
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
-        }
-
-        .search-input::placeholder {
-            color: #999;
-        }
-
-        .search-input:focus {
-            box-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
-            width: 280px;
-            background-color: #fff;
-        }
-
-        /* Vùng chứa Video */
-        .video-container {
-            max-width: 1200px;
-            margin: 50px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 35px;
-        }
-
-        /* Từng thẻ Video */
-        .video-card {
-            background-color: rgba(255, 255, 255, 0.85);
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            backdrop-filter: blur(10px);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .video-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 20px 40px rgba(0, 51, 102, 0.15);
-            border-color: var(--pnj-gold);
-        }
-
-        .video-wrapper {
-            width: 100%;
-            aspect-ratio: 9 / 16;
-            background-color: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .video-wrapper video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            cursor: pointer;
-        }
-
-        /* --- Nút Play tùy chỉnh ở giữa video --- */
-        .play-btn {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 60px;
-            height: 60px;
-            background-color: rgba(163, 29, 36, 0.85); /* Màu đỏ đô PNJ */
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            pointer-events: none; /* Click xuyên qua xuống lớp video */
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-
-        .play-btn svg {
-            width: 24px;
-            height: 24px;
-            fill: #FFFFFF;
-            margin-left: 4px; /* Cân bằng thị giác cho icon tam giác */
-        }
-
-        .video-wrapper:hover .play-btn {
-            background-color: rgba(163, 29, 36, 1);
-            transform: translate(-50%, -50%) scale(1.1);
-        }
-
-        .video-wrapper.is-playing .play-btn {
+        .fade-in-section {
             opacity: 0;
-            visibility: hidden;
-            transform: translate(-50%, -50%) scale(0.5);
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
         }
-
-        /* --- Chỉ số lượt xem --- */
-        .view-count {
-            position: absolute;
-            bottom: 12px;
-            left: 12px;
-            background-color: rgba(0, 51, 102, 0.75); /* Nền xanh PNJ trong suốt */
-            color: #FFFFFF;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            z-index: 5;
-            pointer-events: none; /* Không cản trở click vào video */
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-            transition: opacity 0.3s ease;
-        }
-
-        .view-count svg {
-            width: 14px;
-            height: 14px;
-            fill: var(--pnj-gold); /* Icon mắt màu vàng PNJ */
-        }
-
-        /* Tùy chọn: Làm mờ nhẹ lượt xem khi video đang phát để không vướng */
-        .video-wrapper.is-playing .view-count {
-            opacity: 0.4;
-        }
-
-        .video-info {
-            padding: 20px 15px;
-            text-align: center;
-            background: linear-gradient(to bottom, rgba(255,255,255,0.9), #ffffff);
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .video-info::before {
-            content: '';
-            display: block;
-            width: 30px;
-            height: 2px;
-            background-color: var(--pnj-gold);
-            margin: 0 auto 12px auto;
-        }
-
-        .video-info h3 {
-            margin: 0 0 8px 0;
-            font-family: 'Playfair Display', serif;
-            font-size: 17px;
-            color: var(--pnj-blue);
-            line-height: 1.4;
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
-        .video-info p {
-            margin: 0;
-            font-size: 12px;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            font-weight: 500;
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #B8860B; border-radius: 10px; }
+
+        .chart-segment {
+            animation: stroke-draw 1.5s ease-out forwards;
+        }
+        @keyframes stroke-draw {
+            from { stroke-dasharray: 0 100; }
         }
 
-        /* --- Nút Tải Xuống (Download) --- */
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 15px;
-            padding: 8px 20px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--pnj-blue);
-            text-decoration: none;
-            border: 1.5px solid var(--pnj-blue);
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            gap: 8px;
+        .sub-tab-active {
+            background-color: #003366;
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 51, 102, 0.2);
+            border-color: #003366;
         }
 
-        .download-btn:hover {
-            background-color: var(--pnj-blue);
-            color: var(--white);
-            box-shadow: 0 4px 10px rgba(0, 51, 102, 0.2);
-            transform: translateY(-2px);
+        .zalo-card-btn {
+            background-color: #fdfaf3;
+            border: 1px solid #f1e9d8;
+            transition: all 0.2s ease;
+        }
+        .zalo-card-btn:hover {
+            background-color: #f9f1e5;
+            border-color: #B8860B;
         }
 
-        .download-btn svg {
-            width: 16px;
-            height: 16px;
-            fill: currentColor;
-        }
-
-        /* --- Thanh Tabs phía trên --- */
-        .tab-wrapper {
-            display: flex;
-            justify-content: center;
-            margin: 30px auto 10px auto;
-            padding: 0 20px;
-        }
-
-        .tab-container {
-            display: inline-flex;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 50px;
-            padding: 8px 12px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
-            backdrop-filter: blur(10px);
-            gap: 10px;
-            z-index: 10;
-        }
-
-        .tab-btn {
-            padding: 12px 35px;
-            background: transparent;
-            border: none;
-            border-radius: 40px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 14px;
-            color: var(--pnj-blue);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-        }
-
-        .tab-btn:hover {
-            background-color: rgba(0, 51, 102, 0.05);
-        }
-
-        .tab-btn.active {
-            background-color: var(--pnj-blue);
-            color: var(--white);
-            box-shadow: 0 4px 12px rgba(0, 51, 102, 0.25);
-        }
-
-        .tab-content {
+        .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
-
-        .tab-content.active {
-            display: grid;
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
 
-        .empty-state {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 80px 20px;
-            font-style: italic;
-            color: var(--text-muted);
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 16px;
-            border: 2px dashed rgba(212, 175, 55, 0.4);
-            backdrop-filter: blur(5px);
+        /* Floating Button Style */
+        .floating-nav-btn {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            z-index: 20;
+        }
+        .floating-nav-btn:hover {
+            background: #003366;
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+        .floating-nav-btn:active {
+            transform: translateY(-50%) scale(0.95);
         }
 
-        /* Responsive cho Mobile & Tablet */
-        @media (max-width: 1000px) {
-            .header-badge {
-                font-size: 26px;
-                padding: 8px 40px;
-            }
-            .header-subtitle {
-                font-size: 13px;
-            }
-            .search-input {
-                width: 180px;
-            }
-            .search-input:focus {
-                width: 220px;
-            }
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
-
-        @media (max-width: 900px) {
-            .video-container {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 25px;
-            }
-            .header {
-                padding: 15px 20px;
-            }
-            .header .logo {
-                height: 65px;
-            }
-        }
-
-        @media (max-width: 650px) {
-            .tab-wrapper {
-                margin: 20px auto 0 auto;
-            }
-            .tab-container {
-                width: 100%;
-                justify-content: flex-start;
-                border-radius: 20px;
-                padding: 10px;
-                overflow-x: auto;
-            }
-            .tab-btn {
-                white-space: nowrap;
-                padding: 10px 25px;
-            }
-            .video-container {
-                grid-template-columns: repeat(2, 1fr); /* Đổi thành 2 cột trên mobile */
-                gap: 12px; /* Giảm khoảng cách giữa các video cho vừa màn hình */
-                padding: 0 10px; /* Giảm lề 2 bên */
-            }
-            .header {
-                flex-direction: column;
-                gap: 15px;
-            }
-            .header .title-container {
-                position: relative;
-                left: auto;
-                transform: none;
-                margin-bottom: 5px;
-            }
-            .header-badge {
-                font-size: 22px;
-                padding: 8px 30px;
-            }
-            .header-subtitle {
-                font-size: 12px;
-                margin-top: 8px;
-            }
-            .search-input {
-                width: 100%;
-                max-width: 300px;
-            }
-            .search-input:focus {
-                width: 100%;
-                max-width: 350px;
-            }
-            
-            /* Tinh chỉnh lại kích thước các chi tiết bên trong thẻ video trên mobile */
-            .video-info {
-                padding: 12px 8px;
-            }
-            .video-info::before {
-                margin: 0 auto 8px auto;
-            }
-            .video-info h3 {
-                font-size: 13px; /* Thu nhỏ tiêu đề SP */
-                margin-bottom: 4px;
-            }
-            .video-info p {
-                font-size: 10px; /* Thu nhỏ mã SP */
-            }
-            .play-btn {
-                width: 45px; /* Thu nhỏ nút play */
-                height: 45px;
-            }
-            .play-btn svg {
-                width: 18px;
-                height: 18px;
-            }
-            .view-count {
-                bottom: 8px;
-                left: 8px;
-                padding: 3px 6px;
-                font-size: 10px; /* Thu nhỏ lượt xem */
-            }
-            .view-count svg {
-                width: 12px;
-                height: 12px;
-            }
-            .download-btn {
-                margin-top: 10px;
-                padding: 6px 14px;
-                font-size: 11px;
-            }
-            .download-btn svg {
-                width: 14px;
-                height: 14px;
-            }
+        .animate-spin-slow {
+            animation: spin-slow 15s linear infinite;
         }
     </style>
 </head>
-<body>
+<body class="min-h-screen bg-[#FCF9F2] font-sans selection:bg-[#B8860B] selection:text-white pb-12 overflow-x-hidden">
 
     <!-- Header -->
-    <header class="header">
-        <img src="logoPNJ_TRANG.png" alt="PNJ Logo" class="logo">
-        <div class="title-container">
-            <h1 class="header-badge">Thư viện Video</h1>
-            <p class="header-subtitle">Công cụ hỗ trợ TVV PNJ tư vấn bán hàng</p>
+    <nav class="bg-white shadow-sm px-4 md:px-6 lg:px-8 py-3 md:py-4 flex justify-between items-center border-b-2 border-[#B8860B] sticky top-0 z-50">
+        <div class="flex items-center gap-3 md:gap-4">
+            <img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776075291/d2evwb1jzgaizbo91wfc.png" alt="Logo KHBL" class="h-9 sm:h-12 md:h-14 lg:h-16 w-auto object-contain shrink-0" />
+            <div class="border-l-2 border-gray-200 pl-3 md:pl-4">
+                <h1 class="font-bold text-[#003366] text-sm md:text-lg lg:text-xl tracking-wider uppercase leading-tight">Creative Hub</h1>
+                <p class="text-[9px] text-gray-400 uppercase tracking-widest hidden md:block">Supporting Center</p>
+            </div>
         </div>
-        <div class="search-container">
-            <input type="text" id="searchInput" class="search-input" placeholder="Tìm tên hoặc mã SP...">
+        <div class="hidden md:flex items-center gap-2 text-sm text-[#9A161F] font-semibold bg-[#F9F1E5] px-4 py-2 rounded-full border border-[#B8860B]/20">
+            <i data-lucide="award" class="w-4 h-4"></i>
+            <span>BÁO CÁO TEAM CONTENT - Q1/2026</span>
         </div>
-    </header>
+    </nav>
 
-    <!-- Thanh Tabs -->
-    <div class="tab-wrapper">
-        <div class="tab-container">
-            <button class="tab-btn active" data-target="explainer">
-                <svg viewBox="0 0 24 24" width="16" height="16" style="margin-right: 6px; flex-shrink: 0; fill: currentColor;"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 12.5v-9l6 4.5-6 4.5z"/></svg>
-                VIDEO EXPLAINER
-            </button>
-            <button class="tab-btn" data-target="review">
-                <svg viewBox="0 0 24 24" width="16" height="16" style="margin-right: 6px; flex-shrink: 0; fill: currentColor;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                VIDEO REVIEW
-            </button>
+    <!-- MAIN TABS -->
+    <div class="max-w-7xl mx-auto px-4 mt-8">
+        <div class="flex justify-center mb-10">
+            <div class="bg-gray-200/60 p-1.5 rounded-full shadow-inner border border-gray-300 flex w-full max-w-md">
+                <button onclick="switchTeamTab('team-design')" id="btn-team-design" class="flex-1 py-3 px-4 rounded-full font-bold text-sm md:text-base transition-all duration-300 bg-transparent text-[#003366] hover:bg-white/60">TEAM DESIGN</button>
+                <button onclick="switchTeamTab('team-content')" id="btn-team-content" class="flex-1 py-3 px-4 rounded-full font-bold text-sm md:text-base transition-all duration-300 bg-[#9A161F] text-white shadow-md">TEAM CONTENT</button>
+            </div>
         </div>
     </div>
 
-    <!-- Tab 1: VIDEO EXPLAINER -->
-    <main class="video-container tab-content active" id="explainer">
-        <!-- Video 1 -->
-        <div class="video-card" data-vid="GB0000W002980">
-            <div class="video-wrapper">
-                <video preload="metadata" muted loop playsinline>
-                    <source src="GB0000W002980.mp4#t=0.001" type="video/mp4">
-                    Trình duyệt của bạn không hỗ trợ thẻ video.
-                </video>
-                <div class="play-btn">
-                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                </div>
-                <!-- Vùng hiển thị lượt xem -->
-                <div class="view-count" title="Lượt xem">
-                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    <span class="count-text">...</span>
-                </div>
+    <!-- TEAM CONTENT PANEL -->
+    <div id="team-content" class="team-panel block">
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- SUB-TABS NAVIGATION -->
+            <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-10">
+                <button onclick="switchSubTab('sub-zalo')" id="btn-sub-zalo" class="sub-tab-active flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-xs md:text-sm transition-all border border-gray-200">
+                    <i data-lucide="message-square" class="w-4 h-4"></i> ZALO MINI PROGRAM
+                </button>
+                <button onclick="switchSubTab('sub-hub')" id="btn-sub-hub" class="bg-white text-[#003366] flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-xs md:text-sm transition-all border border-gray-200 hover:border-[#003366] hover:shadow-sm">
+                    <i data-lucide="layers" class="w-4 h-4"></i> VAI TRÒ CREATIVE HUB
+                </button>
+                <button onclick="switchSubTab('sub-gtm')" id="btn-sub-gtm" class="bg-white text-[#003366] flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-xs md:text-sm transition-all border border-gray-200 hover:border-[#003366] hover:shadow-sm">
+                    <i data-lucide="trending-up" class="w-4 h-4"></i> HỖ TRỢ TRUYỀN THÔNG GTM
+                </button>
             </div>
-            <div class="video-info">
-                <h3>Bông Tai Trẻ Em Cinnamoroll</h3>
-                <p>Mã SP: GB0000W002980</p>
-                <a href="GB0000W002980.mp4" download="GB0000W002980.mp4" class="download-btn">
-                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    Tải video
-                </a>
-            </div>
-        </div>
 
-        <!-- Video 2 -->
-        <div class="video-card" data-vid="GBXMXMW003718">
-            <div class="video-wrapper">
-                <video preload="metadata" muted loop playsinline>
-                    <source src="GBXMXMW003718.mp4#t=0.001" type="video/mp4">
-                    Trình duyệt của bạn không hỗ trợ thẻ video.
-                </video>
-                <div class="play-btn">
-                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <!-- SUB-TAB 1: ZALO MINI PROGRAM -->
+            <section id="sub-zalo" class="sub-content block fade-in-section is-visible">
+                <div class="text-center mb-10 px-2">
+                    <h2 class="font-serif-vi text-2xl md:text-4xl text-[#003366] font-bold uppercase mb-2">Zalo Mini Program</h2>
+                    <p class="font-sans-vi text-[#B8860B] font-bold text-[10px] md:text-sm tracking-widest uppercase">Giải pháp phát triển khách hàng mới Out-of-store</p>
                 </div>
-                <div class="view-count" title="Lượt xem">
-                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    <span class="count-text">...</span>
-                </div>
-            </div>
-            <div class="video-info">
-                <h3>Bông Tai Vàng Trắng 10K</h3>
-                <p>Mã SP: GBXMXMW003718</p>
-                <a href="GBXMXMW003718.mp4" download="GBXMXMW003718.mp4" class="download-btn">
-                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    Tải video
-                </a>
-            </div>
-        </div>
 
-        <!-- Video 3 -->
-        <div class="video-card" data-vid="GBXMXMW003741">
-            <div class="video-wrapper">
-                <video preload="metadata" muted loop playsinline>
-                    <source src="GBXMXMW003741.mp4#t=0.001" type="video/mp4">
-                    Trình duyệt của bạn không hỗ trợ thẻ video.
-                </video>
-                <div class="play-btn">
-                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                </div>
-                <div class="view-count" title="Lượt xem">
-                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    <span class="count-text">...</span>
-                </div>
-            </div>
-            <div class="video-info">
-                <h3>Bông Tai Vàng Trắng 10K</h3>
-                <p>Mã SP: GBXMXMW003741</p>
-                <a href="GBXMXMW003741.mp4" download="GBXMXMW003741.mp4" class="download-btn">
-                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    Tải video
-                </a>
-            </div>
-        </div>
+                <div class="bg-white rounded-[2.5rem] shadow-xl border border-gray-100 p-6 md:p-10">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 items-stretch">
+                        <!-- Cột 1: Cá nhân hóa thiệp -->
+                        <div class="space-y-6 pt-0">
+                            <div class="border-l-4 border-[#003366] pl-4">
+                                <!-- Updated Title Font to match Column 2 -->
+                                <h3 class="font-bold text-[#003366] text-sm md:text-base uppercase tracking-wide leading-tight">Cá nhân hóa nội dung thiệp 8/3</h3>
+                                <div class="text-[10px] text-gray-500 mt-2 font-medium leading-relaxed">
+                                    • Xây dựng hệ thống thiệp <span class="text-[#003366] font-bold">theo từng đối tượng</span><br>
+                                    • Giúp khách hàng <span class="text-[#003366] font-bold">chọn nhanh - đúng nhu cầu - cảm xúc</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-col gap-2.5">
+                                <div class="zalo-card-btn w-full py-2.5 px-4 rounded-xl text-[#003366] font-bold text-[11px] md:text-xs flex items-center justify-between cursor-pointer">
+                                    <span>Gửi tặng Mẹ</span> <i data-lucide="chevron-right" class="w-4 h-4 opacity-40"></i>
+                                </div>
+                                <div class="zalo-card-btn w-full py-2.5 px-4 rounded-xl text-[#003366] font-bold text-[11px] md:text-xs flex items-center justify-between cursor-pointer">
+                                    <span>Gửi tặng Vợ</span> <i data-lucide="chevron-right" class="w-4 h-4 opacity-40"></i>
+                                </div>
+                                <div class="zalo-card-btn w-full py-2.5 px-4 rounded-xl text-[#003366] font-bold text-[11px] md:text-xs flex items-center justify-between cursor-pointer">
+                                    <span>Gửi tặng Người yêu</span> <i data-lucide="chevron-right" class="w-4 h-4 opacity-40"></i>
+                                </div>
+                                <div class="zalo-card-btn w-full py-2.5 px-4 rounded-xl text-[#003366] font-bold text-[11px] md:text-xs flex items-center justify-between cursor-pointer">
+                                    <span>Gửi Chị & Em gái</span> <i data-lucide="chevron-right" class="w-4 h-4 opacity-40"></i>
+                                </div>
+                                <div class="zalo-card-btn w-full py-2.5 px-4 rounded-xl text-[#003366] font-bold text-[11px] md:text-xs flex items-center justify-between cursor-pointer">
+                                    <span>Tặng bản thân</span> <i data-lucide="chevron-right" class="w-4 h-4 opacity-40"></i>
+                                </div>
+                            </div>
 
-        <!-- Video 4 -->
-        <div class="video-card" data-vid="GBXMXMW003806">
-            <div class="video-wrapper">
-                <video preload="metadata" muted loop playsinline>
-                    <source src="GBXMXMW003806.mp4#t=0.001" type="video/mp4">
-                    Trình duyệt của bạn không hỗ trợ thẻ video.
-                </video>
-                <div class="play-btn">
-                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                </div>
-                <div class="view-count" title="Lượt xem">
-                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    <span class="count-text">...</span>
-                </div>
-            </div>
-            <div class="video-info">
-                <h3>Bông Tai Trẻ Em Cinnamoroll</h3>
-                <p>Mã SP: GBXMXMW003806</p>
-                <a href="GBXMXMW003806.mp4" download="GBXMXMW003806.mp4" class="download-btn">
-                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    Tải video
-                </a>
-            </div>
-        </div>
+                            <div class="pt-6 border-t border-gray-100">
+                                <p class="text-[9px] text-[#B8860B] font-bold uppercase tracking-widest flex items-center gap-1 mb-4">
+                                    <i data-lucide="image" class="w-3 h-3"></i> Mẫu thiệp tham khảo
+                                </p>
+                                <div class="relative group/slider">
+                                    <button onclick="scrollSlider('card-slider', 'left')" class="floating-nav-btn absolute -left-3 top-1/2 -translate-y-1/2 w-9 h-9 md:w-10 md:h-10 rounded-full flex items-center justify-center text-[#003366]">
+                                        <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                                    </button>
+                                    <div id="card-slider" class="flex gap-3 overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-smooth">
+                                        <div class="min-w-full snap-center"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776249186/gt8vvaltbmesnyfrbezx.png" class="w-full aspect-video object-cover rounded-xl border border-gray-100 shadow-sm" /></div>
+                                        <div class="min-w-full snap-center"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776249187/dfbu1aapk8klvfnyfzq8.png" class="w-full aspect-video object-cover rounded-xl border border-gray-100 shadow-sm" /></div>
+                                        <div class="min-w-full snap-center"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776249186/wbe0ivywaaexppmg4izm.png" class="w-full aspect-video object-cover rounded-xl border border-gray-100 shadow-sm" /></div>
+                                    </div>
+                                    <button onclick="scrollSlider('card-slider', 'right')" class="floating-nav-btn absolute -right-3 top-1/2 -translate-y-1/2 w-9 h-9 md:w-10 md:h-10 rounded-full flex items-center justify-center text-[#003366]">
+                                        <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
 
-        <!-- Video 5 -->
-        <div class="video-card" data-vid="GBXMXMY011060">
-            <div class="video-wrapper">
-                <video preload="metadata" muted loop playsinline>
-                    <source src="GBXMXMY011060.mp4#t=0.001" type="video/mp4">
-                    Trình duyệt của bạn không hỗ trợ thẻ video.
-                </video>
-                <div class="play-btn">
-                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                </div>
-                <div class="view-count" title="Lượt xem">
-                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    <span class="count-text">...</span>
-                </div>
-            </div>
-            <div class="video-info">
-                <h3>Bông Tai Vàng 18K</h3>
-                <p>Mã SP: GBXMXMY011060</p>
-                <a href="GBXMXMY011060.mp4" download="GBXMXMY011060.mp4" class="download-btn">
-                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    Tải video
-                </a>
-            </div>
-        </div>
+                        <!-- Cột 2: May đo nội dung -->
+                        <div class="text-center pt-0">
+                            <h3 class="font-bold text-[#003366] text-sm mb-2 uppercase tracking-wide leading-tight px-4">May đo nội dung cho Brand và 4 sub-Brand</h3>
+                            <p class="text-[10px] text-gray-400 italic mb-8 leading-tight px-2">Adapt content theo từng brand/sub-brand. Đảm bảo đúng tone & đúng tệp khách hàng</p>
+                            <div class="bg-gray-50/50 p-4 rounded-[2rem] border border-gray-100 shadow-inner">
+                                <div class="flex flex-col gap-3">
+                                    <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-100 flex items-center justify-center min-h-[60px]"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776076531/kvez8igf06wdf18lzoli.png" class="max-h-8 w-auto"></div>
+                                    <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-100 flex items-center justify-center min-h-[60px]"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776076532/uijfwjpzdiu777yz9rxu.png" class="max-h-8 w-auto"></div>
+                                    <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-100 flex items-center justify-center min-h-[60px]"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776250121/cdvbhygikdmapymxdpav.png" class="max-h-8 w-auto"></div>
+                                    <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-100 flex items-center justify-center min-h-[60px]"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776250121/vytmlx50unyywfjiu0pn.png" class="max-h-8 w-auto"></div>
+                                    <div class="bg-white p-3 rounded-xl shadow-sm border border-pnjGold/20 flex items-center justify-center min-h-[70px]"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776075155/zpw3nmwqd6ynu3hmodwc.png" class="max-h-10 w-auto"></div>
+                                </div>
+                            </div>
+                        </div>
 
-        <!-- Video 6 -->
-        <div class="video-card" data-vid="GBXMXMY011061">
-            <div class="video-wrapper">
-                <video preload="metadata" muted loop playsinline>
-                    <source src="GBXMXMY011061.mp4#t=0.001" type="video/mp4">
-                    Trình duyệt của bạn không hỗ trợ thẻ video.
-                </video>
-                <div class="play-btn">
-                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                </div>
-                <div class="view-count" title="Lượt xem">
-                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    <span class="count-text">...</span>
-                </div>
-            </div>
-            <div class="video-info">
-                <h3>Bông Tai Vàng 18K</h3>
-                <p>Mã SP: GBXMXMY011061</p>
-                <a href="GBXMXMY011061.mp4" download="GBXMXMY011061.mp4" class="download-btn">
-                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    Tải video
-                </a>
-            </div>
-        </div>
+                        <!-- Cột 3: Hiệu quả lan tỏa -->
+                        <div class="bg-[#F9F1E5] rounded-[2.5rem] p-8 text-center shadow-inner h-full flex flex-col justify-center border border-[#B8860B]/10">
+                            <div class="flex-grow flex flex-col justify-center space-y-12">
+                                <p class="font-bold text-[#003366] text-[11px] uppercase tracking-[0.2em] mb-2">HIỆU QUẢ LAN TỎA</p>
+                                <div class="flex flex-col items-center group">
+                                    <span class="text-6xl md:text-7xl font-number text-[#9A161F] transition-transform group-hover:scale-105">32,902</span>
+                                    <p class="font-bold text-[#003366] text-[10px] md:text-xs uppercase tracking-wide mt-2">SĐT khách hàng tiềm năng</p>
+                                    <div class="w-8 h-0.5 bg-[#B8860B]/30 mt-3"></div>
+                                </div>
+                                <div class="flex flex-col items-center group">
+                                    <span class="text-6xl md:text-7xl font-number text-[#9A161F] transition-transform group-hover:scale-105">8.535</span>
+                                    <div class="flex items-center gap-2 mt-2">
+                                        <p class="font-bold text-[#003366] text-[10px] md:text-xs uppercase tracking-wide">Lượt chia sẻ hoạt động</p>
+                                        <div class="bg-white p-1 rounded-md shadow-sm"><i data-lucide="share-2" class="w-3 h-3 text-[#B8860B]"></i></div>
+                                    </div>
+                                    <div class="w-8 h-0.5 bg-[#B8860B]/30 mt-3"></div>
+                                </div>
+                            </div>
 
-        <!-- Video 7 -->
-        <div class="video-card" data-vid="GI0000Y000730">
-            <div class="video-wrapper">
-                <video preload="metadata" muted loop playsinline>
-                    <source src="GI0000Y000730.mp4#t=0.001" type="video/mp4">
-                    Trình duyệt của bạn không hỗ trợ thẻ video.
-                </video>
-                <div class="play-btn">
-                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            <!-- Footer Section / Organic Growth -->
+                            <div class="pt-10 border-t border-[#B8860B]/20 mt-10">
+                                <p class="text-[#9A161F] font-bold text-[10px] md:text-xs italic tracking-tight mb-6">Số liệu theo Chương Trình 8.3</p>
+                                
+                                <div class="flex flex-col items-start w-full px-2 space-y-4">
+                                    <div class="flex items-center gap-2.5 text-pnjBlue font-bold bg-white/50 px-4 py-2 rounded-full border border-pnjGold/10">
+                                        <i data-lucide="trending-up" class="w-5 h-5 text-pnjRed"></i>
+                                        <span class="uppercase tracking-[0.15em] text-xs">Organic Growth</span>
+                                    </div>
+                                    <div class="text-left space-y-3 pl-2">
+                                        <div class="flex items-start gap-2.5">
+                                            <div class="w-1.5 h-1.5 rounded-full bg-pnjRed mt-1.5 shrink-0"></div>
+                                            <p class="text-[11px] md:text-sm text-gray-700 font-semibold leading-relaxed">Thiết kế trải nghiệm cá nhân hóa cho người dùng.</p>
+                                        </div>
+                                        <div class="flex items-start gap-2.5">
+                                            <div class="w-1.5 h-1.5 rounded-full bg-pnjRed mt-1.5 shrink-0"></div>
+                                            <p class="text-[11px] md:text-sm text-gray-700 font-semibold leading-relaxed">Đảm bảo tính nhất quán & phù hợp across brands.</p>
+                                        </div>
+                                        <div class="flex items-start gap-2.5">
+                                            <div class="w-1.5 h-1.5 rounded-full bg-pnjRed mt-1.5 shrink-0"></div>
+                                            <p class="text-[11px] md:text-sm text-gray-700 font-semibold leading-relaxed">Góp phần trực tiếp vào hiệu quả lan tỏa và tương tác của campaign.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="view-count" title="Lượt xem">
-                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    <span class="count-text">...</span>
-                </div>
-            </div>
-            <div class="video-info">
-                <h3>Hạt Charm Vàng PNJ Turning Gold</h3>
-                <p>Mã SP: GI0000Y000730</p>
-                <a href="GI0000Y000730.mp4" download="GI0000Y000730.mp4" class="download-btn">
-                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    Tải video
-                </a>
-            </div>
-        </div>
+            </section>
 
-        <!-- Video 8 -->
-        <div class="video-card" data-vid="GC0000C000061">
-            <div class="video-wrapper">
-                <video preload="metadata" muted loop playsinline>
-                    <source src="GC0000C000061.mp4#t=0.001" type="video/mp4">
-                    Trình duyệt của bạn không hỗ trợ thẻ video.
-                </video>
-                <div class="play-btn">
-                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <!-- SUB-TAB 2: VAI TRÒ CREATIVE HUB -->
+            <section id="sub-hub" class="sub-content hidden fade-in-section">
+                <div class="text-center mb-10">
+                    <h2 class="font-serif-vi text-2xl md:text-4xl text-[#003366] font-bold uppercase mb-2">VAI TRÒ CREATIVE HUB CỦA K.KHBL</h2>
+                    <p class="font-sans-vi text-[#B8860B] font-bold text-xs md:text-sm tracking-widest uppercase italic">ĐẢM BẢO BRAND CONSISTENCY & TỐI ƯU HIỆU QUẢ TRUYỀN THÔNG ĐA KÊNH
+</p>
                 </div>
-                <div class="view-count" title="Lượt xem">
-                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    <span class="count-text">...</span>
-                </div>
-            </div>
-            <div class="video-info">
-                <h3>Dây Cổ Vàng 10K Disney PNJ Donald</h3>
-                <p>Mã SP: GC0000C000061</p>
-                <a href="GC0000C000061.mp4" download="GC0000C000061.mp4" class="download-btn">
-                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    Tải video
-                </a>
-            </div>
-        </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start bg-white rounded-[2.5rem] p-8 md:p-12 shadow-xl border border-gray-100">
+                    <div class="relative flex flex-col items-center">
+                        <div class="relative flex items-center justify-center min-h-[400px] w-full mb-12">
+                            <div class="z-20 w-36 h-36 md:w-48 md:h-48 rounded-full bg-[#003366] border-4 border-[#B8860B] shadow-2xl flex items-center justify-center text-center p-4">
+                                <span class="text-white font-bold text-xs md:text-sm leading-tight tracking-widest uppercase">K.KHBL<br>CREATIVE<br>HUB</span>
+                            </div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-full h-full max-w-[340px] max-h-[340px] border border-dashed border-[#B8860B]/30 rounded-full animate-spin-slow"></div>
+                            </div>
+                            
+                            <div class="absolute top-0 left-0 bg-white shadow-lg p-4 rounded-xl border-l-4 border-[#003366] w-48 md:w-56 transition-all hover:scale-105">
+                                <h4 class="text-[11px] font-bold text-[#003366] mb-1">1. BRAND / SUB-BRAND</h4>
+                                <p class="text-[9px] text-gray-500 leading-relaxed">Triển khai nội dung Go-to-Market cho BST mới.</p>
+                                <p class="text-[9px] text-gray-500 leading-relaxed">Thông qua Blog & Zalo Broadcast, đảm bảo đúng định vị – đúng tệp khách hàng – đúng thông điệp.</p>
+                            </div>
+                            
+                            <div class="absolute top-0 right-0 bg-white shadow-lg p-4 rounded-xl border-r-4 border-[#003366] w-48 md:w-56 text-right transition-all hover:scale-105">
+                                <h4 class="text-[11px] font-bold text-[#003366] mb-1">2. RETAIL MKT</h4>
+                                <p class="text-[9px] text-gray-500 leading-relaxed">Truyền thông campaign trọng điểm (8/3).</p>
+                                <p class="text-[9px] text-gray-500 leading-relaxed">Đồng bộ nội dung trên các kênh PNJ Blog và Zalo OA PNJ.</p>
+                            </div>
+                            
+                            <div class="absolute bottom-0 left-0 bg-white shadow-lg p-4 rounded-xl border-l-4 border-[#003366] w-48 md:w-56 transition-all hover:scale-105">
+                                <h4 class="text-[11px] font-bold text-[#003366] mb-1">3. OMNI - GROWTH - CDP</h4>
+                                <p class="text-[9px] text-gray-500 leading-relaxed">Cá nhân hóa nội dung theo từng nhóm khách hàng.</p>
+                                <p class="text-[9px] text-gray-500 leading-relaxed">Sản xuất content may đo theo từng Persona để tiếp cận lại KHC cho chương trình 8/3.</p>
+                            </div>
+                            
+                            <div class="absolute bottom-0 right-0 bg-white shadow-lg p-4 rounded-xl border-r-4 border-[#003366] w-48 md:w-56 text-right transition-all hover:scale-105">
+                                <h4 class="text-[11px] font-bold text-[#003366] mb-1">4. OMNI MKT</h4>
+                                <p class="text-[9px] text-gray-500 leading-relaxed">Định hướng & sản xuất nội dung phục vụ chuyển đổi.</p>
+                                <p class="text-[9px] text-gray-500 leading-relaxed">-Phát triển key message cho campaign.</p>
+                                <p class="text-[9px] text-gray-500 leading-relaxed">-Triển khai nội dung đa kênh (FB, Zalo,…).</p>
+                                <p class="text-[9px] text-gray-500 leading-relaxed">-Hỗ trợ các chiến dịch: Tab Sale, Product-driven, 8/3.</p>
+                            </div>
+                        </div>
+                    </div>
 
-        <!-- Video 9 -->
-        <div class="video-card" data-vid="GI0000Y000778">
-            <div class="video-wrapper">
-                <video preload="metadata" muted loop playsinline>
-                    <source src="GI0000Y000778.mp4#t=0.001" type="video/mp4">
-                    Trình duyệt của bạn không hỗ trợ thẻ video.
-                </video>
-                <div class="play-btn">
-                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    <div class="flex flex-col items-center bg-gray-50/50 p-8 rounded-[2rem] border border-gray-100">
+                        <div class="text-center mb-8">
+                            <h3 class="font-bold text-[#003366] text-sm uppercase tracking-wider mb-2">Tỉ trọng điều phối nội dung giữa các phòng ban</h3>
+                        </div>
+                        
+                        <div class="relative w-56 h-56 md:w-72 md:h-72 mb-10">
+                            <svg viewBox="0 0 36 36" class="w-full h-full transform -rotate-90">
+                                <circle cx="18" cy="18" r="15.9" fill="transparent" stroke="#e5e7eb" stroke-width="4"></circle>
+                                <circle class="chart-segment" cx="18" cy="18" r="15.9" fill="transparent" stroke="#B8860B" stroke-width="4" stroke-dasharray="80.2 19.8"></circle>
+                                <circle class="chart-segment" cx="18" cy="18" r="15.9" fill="transparent" stroke="#003366" stroke-width="4" stroke-dasharray="14.2 85.8" stroke-dashoffset="-80.2"></circle>
+                                <circle class="chart-segment" cx="18" cy="18" r="15.9" fill="transparent" stroke="#9ca3af" stroke-width="4" stroke-dasharray="5.6 94.4" stroke-dashoffset="-94.4"></circle>
+                            </svg>
+                            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                <span class="text-4xl font-number text-[#003366]">100%</span>
+                                <span class="text-[9px] text-gray-400 font-bold uppercase tracking-widest mt-1">Điều phối Hub</span>
+                            </div>
+                        </div>
+                        
+                        <div class="w-full space-y-4">
+                            <div class="flex items-center justify-between p-3 bg-white rounded-xl shadow-sm border border-gray-100">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-3 h-3 rounded-full bg-[#B8860B]"></div>
+                                    <span class="text-[11px] font-bold text-[#003366] uppercase">OMNI MKT</span>
+                                </div>
+                                <span class="font-number text-[#B8860B] text-lg">80.2%</span>
+                            </div>
+                            
+                            <div class="flex items-center justify-between p-3 bg-white rounded-xl shadow-sm border border-gray-100">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-3 h-3 rounded-full bg-[#003366]"></div>
+                                    <span class="text-[11px] font-bold text-[#003366] uppercase">Brand / Sub-Brand</span>
+                                </div>
+                                <span class="font-number text-[#003366] text-lg">14.2%</span>
+                            </div>
+                            
+                            <div class="flex items-center justify-between p-3 bg-white rounded-xl shadow-sm border border-gray-100">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-3 h-3 rounded-full bg-[#9ca3af]"></div>
+                                    <span class="text-[11px] font-bold text-gray-500 uppercase">RETAIL và OMNI GROWTH - CDP </span>
+                                </div>
+                                <span class="font-number text-gray-500 text-lg">5.6%</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="view-count" title="Lượt xem">
-                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    <span class="count-text">...</span>
-                </div>
-            </div>
-            <div class="video-info">
-                <h3>Hạt Charm Trẻ Em Vàng 10K Cinnamoroll</h3>
-                <p>Mã SP: GI0000Y000778</p>
-                <a href="GI0000Y000778.mp4" download="GI0000Y000778.mp4" class="download-btn">
-                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    Tải video
-                </a>
-            </div>
-        </div>
+            </section>
 
-        <!-- Video 10 -->
-        <div class="video-card" data-vid="GNDDDDW015508">
-            <div class="video-wrapper">
-                <video preload="metadata" muted loop playsinline>
-                    <source src="GNDDDDW015508.mp4#t=0.001" type="video/mp4">
-                    Trình duyệt của bạn không hỗ trợ thẻ video.
-                </video>
-                <div class="play-btn">
-                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <!-- SUB-TAB 3: HỖ TRỢ TRUYỀN THÔNG GTM -->
+            <section id="sub-gtm" class="sub-content hidden fade-in-section">
+                <div class="text-center mb-10 px-2">
+                    <h2 class="font-serif-vi text-2xl md:text-4xl text-[#003366] font-bold uppercase mb-2">HỖ TRỢ TRUYỀN THÔNG GTM</h2>
+                    <p class="font-sans-vi text-[#B8860B] font-bold text-[10px] md:text-sm tracking-widest uppercase leading-tight italic">Go-to-market BST mới & Chiến dịch trọng điểm</p>
                 </div>
-                <div class="view-count" title="Lượt xem">
-                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    <span class="count-text">...</span>
-                </div>
-            </div>
-            <div class="video-info">
-                <h3>Nhẫn Kim Cương Vàng Trắng 14K Only You</h3>
-                <p>Mã SP: GNDDDDW015508</p>
-                <a href="GNDDDDW015508.mp4" download="GNDDDDW015508.mp4" class="download-btn">
-                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    Tải video
-                </a>
-            </div>
-        </div>
 
-        <!-- Video 11 -->
-        <div class="video-card" data-vid="GMXMXMY010003">
-            <div class="video-wrapper">
-                <video preload="metadata" muted loop playsinline>
-                    <source src="GMXMXMY010003.mp4#t=0.001" type="video/mp4">
-                    Trình duyệt của bạn không hỗ trợ thẻ video.
-                </video>
-                <div class="play-btn">
-                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                </div>
-                <div class="view-count" title="Lượt xem">
-                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    <span class="count-text">...</span>
-                </div>
-            </div>
-            <div class="video-info">
-                <h3>Mặt Dây Chuyền Vàng 18K Đính Đá CZ</h3>
-                <p>Mã SP: GMXMXMY010003</p>
-                <a href="GMXMXMY010003.mp4" download="GMXMXMY010003.mp4" class="download-btn">
-                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    Tải video
-                </a>
-            </div>
-        </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                    <!-- PNJ Blog Card -->
+                    <div class="bg-white rounded-[3rem] p-8 md:p-10 shadow-xl border border-gray-100 flex flex-col transition-all hover:shadow-2xl">
+                        <div class="bg-blue-50/50 rounded-2xl p-6 mb-8 text-center border border-blue-100">
+                            <h3 class="font-bold text-[#003366] text-4xl font-number italic mb-1 tracking-tight">PNJ Blog</h3>
+                        </div>
+                        
+                        <ul class="space-y-4 mb-6 px-2">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-[#B8860B] shrink-0 mt-0.5"></i>
+                                <p class="text-sm text-gray-600 leading-relaxed font-medium">Phủ nội dung cho 5 sub-brand (<span class="text-pnjBlue font-bold italic">STYLE by PNJ, Disney|PNJ, PNJ &lt;3 Hello Kitty, PNJ Watch, MANCODE by PNJ</span>).</p>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-[#B8860B] shrink-0 mt-0.5"></i>
+                                <p class="text-sm text-gray-600 leading-relaxed font-medium">Duy trì traffic nền tảng ổn định, chuyển đổi từ <span class="text-pnjBlue font-bold">'peak traffic'</span> sang <span class="text-pnjBlue font-bold">'xây nền nội dung'</span>.</p>
+                            </li>
+                        </ul>
 
-        <!-- Video 12 -->
-        <div class="video-card" data-vid="GNDDDDW015506">
-            <div class="video-wrapper">
-                <video preload="metadata" muted loop playsinline>
-                    <source src="GNDDDDW015506.mp4#t=0.001" type="video/mp4">
-                    Trình duyệt của bạn không hỗ trợ thẻ video.
-                </video>
-                <div class="play-btn">
-                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                </div>
-                <div class="view-count" title="Lượt xem">
-                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    <span class="count-text">...</span>
-                </div>
-            </div>
-            <div class="video-info">
-                <h3>Nhẫn Kim Cương Vàng Trắng 14K Only You</h3>
-                <p>Mã SP: GNDDDDW015506</p>
-                <a href="GNDDDDW015506.mp4" download="GNDDDDW015506.mp4" class="download-btn">
-                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    Tải video
-                </a>
-            </div>
-        </div>
+                        <div class="mb-8 px-2">
+                            <div class="relative group/blog">
+                                <button onclick="scrollSlider('blog-slider', 'left')" class="floating-nav-btn absolute -left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center text-[#003366]">
+                                    <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                                </button>
+                                <div id="blog-slider" class="flex gap-3 overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-smooth">
+                                    <div class="min-w-[85%] md:min-w-[75%] snap-center"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776249186/ke1xdhefgh73vhzygmd0.png" class="w-full aspect-[4/3] object-cover rounded-2xl border border-gray-100 shadow-sm"></div>
+                                    <div class="min-w-[85%] md:min-w-[75%] snap-center"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776249185/pvub4pwz8b17pkqp9mb9.png" class="w-full aspect-[4/3] object-cover rounded-2xl border border-gray-100 shadow-sm"></div>
+                                    <div class="min-w-[85%] md:min-w-[75%] snap-center"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776249186/mcnahtsqr4sb7acqek4o.jpg" class="w-full aspect-[4/3] object-cover rounded-2xl border border-gray-100 shadow-sm"></div>
+                                    <div class="min-w-[85%] md:min-w-[75%] snap-center"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776249186/ofc9hit7kfvkobtwck9c.png" class="w-full aspect-[4/3] object-cover rounded-2xl border border-gray-100 shadow-sm"></div>
+                                </div>
+                                <button onclick="scrollSlider('blog-slider', 'right')" class="floating-nav-btn absolute -right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center text-[#003366]">
+                                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
 
-        <!-- Video 13 -->
-        <div class="video-card" data-vid="GV0000C000202">
-            <div class="video-wrapper">
-                <video preload="metadata" muted loop playsinline>
-                    <source src="https://res.cloudinary.com/dzkiwoek4/video/upload/v1774409500/GV0000C000202_cfofxg.mp4#t=0.001" type="video/mp4">
-                    Trình duyệt của bạn không hỗ trợ thẻ video.
-                </video>
-                <div class="play-btn">
-                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                </div>
-                <div class="view-count" title="Lượt xem">
-                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    <span class="count-text">...</span>
-                </div>
-            </div>
-            <div class="video-info">
-                <h3>Vòng Tay Vàng 10K PNJ</h3>
-                <p>Mã SP: GV0000C000202</p>
-                <a href="https://res.cloudinary.com/dzkiwoek4/video/upload/v1774409500/GV0000C000202_cfofxg.mp4" download="GV0000C000202.mp4" class="download-btn">
-                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    Tải video
-                </a>
-            </div>
-        </div>
+                        <div class="border-t border-gray-100 pt-6 flex items-end justify-between mt-auto">
+                            <div class="space-y-1">
+                                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Tổng lượt xem nội dung</p>
+                                <span class="text-4xl font-number text-[#B8860B]">13,575</span>
+                            </div>
+                            <div class="text-right flex flex-col items-end gap-1.5">
+                                <div class="bg-[#F9F1E5] px-4 py-2 rounded-xl text-[10px] font-bold text-[#003366] border border-[#B8860B]/20 mb-4 inline-block">
+                                Duy trì 82% traffic so với tháng 12/2025
+                            </div>
+                                <div class="flex items-center gap-1.5 text-pnjGold font-bold text-sm">
+                                    <i data-lucide="file-text" class="w-4 h-4"></i>
+                                    <span>11 Bài Blog</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-        <!-- Video 14 -->
-        <div class="video-card" data-vid="GV0000C000203">
-            <div class="video-wrapper">
-                <video preload="metadata" muted loop playsinline>
-                    <source src="https://res.cloudinary.com/dzkiwoek4/video/upload/v1774409503/GV0000C000203_va2xam.mp4#t=0.001" type="video/mp4">
-                    Trình duyệt của bạn không hỗ trợ thẻ video.
-                </video>
-                <div class="play-btn">
-                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                </div>
-                <div class="view-count" title="Lượt xem">
-                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    <span class="count-text">...</span>
-                </div>
-            </div>
-            <div class="video-info">
-                <h3>Vòng Tay Vàng 10K Disney | PNJ Donald</h3>
-                <p>Mã SP: GV0000C000203</p>
-                <a href="https://res.cloudinary.com/dzkiwoek4/video/upload/v1774409503/GV0000C000203_va2xam.mp4" download="GV0000C000203.mp4" class="download-btn">
-                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    Tải video
-                </a>
-            </div>
-        </div>
+                    <!-- Zalo Broadcast Card -->
+                    <div class="bg-white rounded-[3rem] p-8 md:p-10 shadow-xl border border-gray-100 flex flex-col transition-all hover:shadow-2xl">
+                        <div class="bg-[#FDF6E9] rounded-2xl p-6 mb-8 text-center border border-[#FBE9D0]">
+                            <h3 class="font-bold text-[#B8860B] text-4xl font-number italic mb-1 tracking-tight">Zalo Broadcast</h3>
+                        </div>
+                        
+                        <ul class="space-y-5 mb-10 flex-grow px-2">
+                            <li class="flex items-start gap-4">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-[#003366] shrink-0 mt-0.5"></i>
+                                <p class="text-sm md:text-base text-gray-600 leading-relaxed font-medium"><span class="text-pnjBlue font-bold italic">Ổn định tương tác sau cao điểm </span>Xuân - Valetine - Thần Tài.</p>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-[#003366] shrink-0 mt-0.5"></i>
+                                <p class="text-sm md:text-base text-gray-600 leading-relaxed font-medium">Hổ trợ điều hướng traffic về website & thúc đẩy bán hàng.</p>
+                            </li>
+                        </ul>
 
-        <!-- Video 15 -->
-        <div class="video-card" data-vid="GV0000C000205">
-            <div class="video-wrapper">
-                <video preload="metadata" muted loop playsinline>
-                    <source src="https://res.cloudinary.com/dzkiwoek4/video/upload/v1774409502/GV0000C000205_jv4njm.mp4#t=0.001" type="video/mp4">
-                    Trình duyệt của bạn không hỗ trợ thẻ video.
-                </video>
-                <div class="play-btn">
-                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                </div>
-                <div class="view-count" title="Lượt xem">
-                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    <span class="count-text">...</span>
-                </div>
-            </div>
-            <div class="video-info">
-                <h3>Vòng Tay Trẻ Em Vàng 10K Cinnamoroll</h3>
-                <p>Mã SP: GV0000C000205</p>
-                <a href="https://res.cloudinary.com/dzkiwoek4/video/upload/v1774409502/GV0000C000205_jv4njm.mp4" download="GV0000C000205.mp4" class="download-btn">
-                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    Tải video
-                </a>
-            </div>
-        </div>
+                        <div class="mb-8 px-2">
+                            <div class="relative group/zalo">
+                                <button onclick="scrollSlider('zalo-slider', 'left')" class="floating-nav-btn absolute -left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center text-[#003366]">
+                                    <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                                </button>
+                                <div id="zalo-slider" class="flex gap-3 overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-smooth">
+                                    <div class="min-w-[85%] md:min-w-[75%] snap-center"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776249187/hfvdxcupakvuxzqjzpx4.jpg" class="w-full aspect-[4/3] object-cover rounded-2xl border border-gray-100 shadow-sm"></div>
+                                    <div class="min-w-[85%] md:min-w-[75%] snap-center"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776249186/xoxnr1oe0dpdaohjfgzb.jpg" class="w-full aspect-[4/3] object-cover rounded-2xl border border-gray-100 shadow-sm"></div>
+                                    <div class="min-w-[85%] md:min-w-[75%] snap-center"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776249186/q8idiibzz7c2ql4fteil.jpg" class="w-full aspect-[4/3] object-cover rounded-2xl border border-gray-100 shadow-sm"></div>
+                                </div>
+                                <button onclick="scrollSlider('zalo-slider', 'right')" class="floating-nav-btn absolute -right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center text-[#003366]">
+                                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
 
-        <!-- Video 16 -->
-        <div class="video-card" data-vid="SBXM00X000025">
-            <div class="video-wrapper">
-                <video preload="metadata" muted loop playsinline>
-                    <source src="https://res.cloudinary.com/dzkiwoek4/video/upload/v1774409498/SBXM00X000025_dcuwzb.mp4#t=0.001" type="video/mp4">
-                    Trình duyệt của bạn không hỗ trợ thẻ video.
-                </video>
-                <div class="play-btn">
-                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        <div class="grid grid-cols-2 gap-4 border-t border-gray-100 pt-8 mt-auto">
+                            <div class="space-y-1">
+                                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Reach (Followers)</p>
+                                <span class="text-3xl font-number text-[#003366]">~490K</span>
+                            </div>
+                            <div class="text-right space-y-1">
+                                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Lượt xem bài viết</p>
+                                <span class="text-3xl font-number text-[#9A161F]">46,643</span>
+                            </div>
+                        </div>
+                        <div class="mt-6 bg-green-50 p-4 rounded-2xl border border-green-100 flex items-center justify-center gap-3">
+                            <div class="bg-white p-1.5 rounded-full shadow-sm">
+                                <i data-lucide="trending-up" class="w-5 h-5 text-green-600"></i>
+                            </div>
+                            <span class="text-xs md:text-sm font-bold text-green-700 uppercase tracking-tight">Tăng trưởng +73% so với Tháng 12/2025</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="view-count" title="Lượt xem">
-                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    <span class="count-text">...</span>
-                </div>
-            </div>
-            <div class="video-info">
-                <h3>Bông Tai Bạc Đính Đá Style By PNJ Berry Boo</h3>
-                <p>Mã SP: SBXM00X000025</p>
-                <a href="https://res.cloudinary.com/dzkiwoek4/video/upload/v1774409498/SBXM00X000025_dcuwzb.mp4" download="SBXM00X000025.mp4" class="download-btn">
-                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    Tải video
-                </a>
-            </div>
-        </div>
+            </section>
 
-        <!-- Video 17 -->
-        <div class="video-card" data-vid="SBXMXMC000054">
-            <div class="video-wrapper">
-                <video preload="metadata" muted loop playsinline>
-                    <source src="https://res.cloudinary.com/dzkiwoek4/video/upload/v1774409502/SBXMXMC000054_uhchoq.mp4#t=0.001" type="video/mp4">
-                    Trình duyệt của bạn không hỗ trợ thẻ video.
-                </video>
-                <div class="play-btn">
-                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                </div>
-                <div class="view-count" title="Lượt xem">
-                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    <span class="count-text">...</span>
-                </div>
-            </div>
-            <div class="video-info">
-                <h3>Bông Tai Bạc Đính Đá Disney | PNJ Mickey</h3>
-                <p>Mã SP: SBXMXMC000054</p>
-                <a href="https://res.cloudinary.com/dzkiwoek4/video/upload/v1774409502/SBXMXMC000054_uhchoq.mp4" download="SBXMXMC000054.mp4" class="download-btn">
-                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    Tải video
-                </a>
-            </div>
-        </div>
+        </main>
+    </div>
 
-        <!-- Video 18 -->
-        <div class="video-card" data-vid="SLXM00X000005">
-            <div class="video-wrapper">
-                <video preload="metadata" muted loop playsinline>
-                    <source src="https://res.cloudinary.com/dzkiwoek4/video/upload/v1774409505/SLXM00X000005_lif6js.mp4#t=0.001" type="video/mp4">
-                    Trình duyệt của bạn không hỗ trợ thẻ video.
-                </video>
-                <div class="play-btn">
-                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                </div>
-                <div class="view-count" title="Lượt xem">
-                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    <span class="count-text">...</span>
-                </div>
-            </div>
-            <div class="video-info">
-                <h3>Lắc Tay Bạc Đính Đá Style By PNJ Berry Boo</h3>
-                <p>Mã SP: SLXM00X000005</p>
-                <a href="https://res.cloudinary.com/dzkiwoek4/video/upload/v1774409505/SLXM00X000005_lif6js.mp4" download="SLXM00X000005.mp4" class="download-btn">
-                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    Tải video
-                </a>
-            </div>
-        </div>
+    <!-- Footer -->
+    <footer class="mt-16 text-center pb-8 border-t border-gray-200 pt-8 px-4">
+        <p class="text-gray-400 text-[10px] font-sans-vi uppercase tracking-widest leading-loose">
+            © 2026 PNJ Creative Hub. Báo cáo Team Content<br>
+        </p>
+    </footer>
 
-        <!-- Video 19 -->
-        <div class="video-card" data-vid="SCXM00X000016">
-            <div class="video-wrapper">
-                <video preload="metadata" muted loop playsinline>
-                    <source src="https://res.cloudinary.com/dzkiwoek4/video/upload/v1774409498/SCXM00X000016_jpyv1d.mp4#t=0.001" type="video/mp4">
-                    Trình duyệt của bạn không hỗ trợ thẻ video.
-                </video>
-                <div class="play-btn">
-                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                </div>
-                <div class="view-count" title="Lượt xem">
-                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    <span class="count-text">...</span>
-                </div>
-            </div>
-            <div class="video-info">
-                <h3>Dây Cổ Bạc Đính Đá Style By PNJ Berry Boo</h3>
-                <p>Mã SP: SCXM00X000016</p>
-                <a href="https://res.cloudinary.com/dzkiwoek4/video/upload/v1774409498/SCXM00X000016_jpyv1d.mp4" download="SCXM00X000016.mp4" class="download-btn">
-                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    Tải video
-                </a>
-            </div>
-        </div>
+    <script>
+        lucide.createIcons();
 
-        <!-- Video 20 -->
-        <div class="video-card" data-vid="SNZT00W000033">
-            <div class="video-wrapper">
-                <video preload="metadata" muted loop playsinline>
-                    <source src="https://res.cloudinary.com/dzkiwoek4/video/upload/v1774409507/SNZT00W000033_j4wtbk.mp4#t=0.001" type="video/mp4">
-                    Trình duyệt của bạn không hỗ trợ thẻ video.
-                </video>
-                <div class="play-btn">
-                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                </div>
-                <div class="view-count" title="Lượt xem">
-                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    <span class="count-text">...</span>
-                </div>
-            </div>
-            <div class="video-info">
-                <h3>Nhẫn Bạc Đính Đá Style By PNJ Berry Boo</h3>
-                <p>Mã SP: SNZT00W000033</p>
-                <a href="https://res.cloudinary.com/dzkiwoek4/video/upload/v1774409507/SNZT00W000033_j4wtbk.mp4" download="https://res.cloudinary.com/dzkiwoek4/video/upload/v1774409507/SNZT00W000033_j4wtbk.mp4" class="download-btn">
-                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    Tải video
-                </a>
-            </div>
-        </div>
-
-        <!-- Video 21 -->
-        <div class="video-card" data-vid="SNZTXMW000047">
-            <div class="video-wrapper">
-                <video preload="metadata" muted loop playsinline>
-                    <source src="https://res.cloudinary.com/dzkiwoek4/video/upload/v1774409501/SNZTXMW000047_xi8qsb.mp4#t=0.001" type="video/mp4">
-                    Trình duyệt của bạn không hỗ trợ thẻ video.
-                </video>
-                <div class="play-btn">
-                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                </div>
-                <div class="view-count" title="Lượt xem">
-                    <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    <span class="count-text">...</span>
-                </div>
-            </div>
-            <div class="video-info">
-                <h3>Nhẫn Bạc Đính Đá Style By PNJ Berry Boo</h3>
-                <p>Mã SP: SNZTXMW000047</p>
-                <a href="https://res.cloudinary.com/dzkiwoek4/video/upload/v1774409501/SNZTXMW000047_xi8qsb.mp4" download="SNZTXMW000047.mp4" class="download-btn">
-                    <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                    Tải video
-                </a>
-            </div>
-        </div>
-    </main>
-
-    <!-- Tab 2: VIDEO REVIEW -->
-    <main class="video-container tab-content" id="review">
-        <div class="empty-state">
-            <svg viewBox="0 0 24 24" width="60" height="60" style="fill: #ccc; margin-bottom: 15px;"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 12.5v-9l6 4.5-6 4.5z"/></svg>
-            <p>Này nhiều clip quá nên KuNu đang tìm cách up lên nha - NÀ NÍ</p>
-        </div>
-    </main>
-
-    <!-- Script xử lý tìm kiếm và Cơ sở dữ liệu Thực tế -->
-    <script type="module">
-        // Import các thư viện xử lý Database đám mây
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, onSnapshot, updateDoc, increment } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- XỬ LÝ THANH TÌM KIẾM ---
-            const searchInput = document.getElementById('searchInput');
-            const videoCards = document.querySelectorAll('.video-card');
-
-            searchInput.addEventListener('input', function() {
-                const searchTerm = this.value.trim().toLowerCase();
-                videoCards.forEach(card => {
-                    const title = card.querySelector('h3').textContent.toLowerCase();
-                    const code = card.querySelector('p').textContent.toLowerCase();
-                    if (title.includes(searchTerm) || code.includes(searchTerm)) {
-                        card.style.display = 'flex';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
+        // Reveal Animation
+        function checkVisibility() {
+            document.querySelectorAll('.fade-in-section').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top <= window.innerHeight * 0.9) {
+                    el.classList.add('is-visible');
+                }
             });
+        }
+        window.addEventListener('scroll', checkVisibility);
+        window.addEventListener('load', checkVisibility);
 
-            // --- XỬ LÝ CHUYỂN ĐỔI TAB ---
-            const tabBtns = document.querySelectorAll('.tab-btn');
-            const tabContents = document.querySelectorAll('.tab-content');
-
-            tabBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    tabBtns.forEach(b => b.classList.remove('active'));
-                    tabContents.forEach(c => c.classList.remove('active'));
-
-                    btn.classList.add('active');
-                    const targetId = btn.getAttribute('data-target');
-                    document.getElementById(targetId).classList.add('active');
-                });
-            });
-
-            // --- XỬ LÝ LƯỢT XEM THỰC TẾ (DATABASE CLOUD) ---
-            const videoWrappers = document.querySelectorAll('.video-wrapper');
-            const isDesktop = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-
-            // Kiểm tra và nhận Cấu hình Database từ hệ thống
-            let firebaseConfig = null;
-            if (typeof __firebase_config !== 'undefined' && __firebase_config) {
-                firebaseConfig = JSON.parse(__firebase_config);
-            }
-
-            // Nếu hệ thống đã cung cấp Database (Môi trường Preview này đã có sẵn)
-            if (firebaseConfig) {
-                const app = initializeApp(firebaseConfig);
-                const auth = getAuth(app);
-                const db = getFirestore(app);
-                const appId = typeof __app_id !== 'undefined' ? __app_id : 'pnj-video-gallery';
-
-                // Đăng nhập ẩn danh để có quyền lưu dữ liệu
-                const initAuth = async () => {
-                    try {
-                        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                            await signInWithCustomToken(auth, __initial_auth_token);
-                        } else {
-                            await signInAnonymously(auth);
-                        }
-                    } catch(e) { console.error("Lỗi kết nối máy chủ:", e); }
-                };
-                initAuth();
-
-                onAuthStateChanged(auth, (user) => {
-                    if (!user) return;
-                    
-                    videoWrappers.forEach(wrapper => {
-                        const video = wrapper.querySelector('video');
-                        const card = wrapper.closest('.video-card');
-                        const vidId = card.getAttribute('data-vid');
-                        const countText = wrapper.querySelector('.count-text');
-
-                        // Trỏ đến ngăn lưu trữ số lượt xem của đúng Video này
-                        const viewDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'videoViews', vidId);
-
-                        // Lắng nghe thay đổi dữ liệu (Khi có ai đó xem, số sẽ nhảy lên ngay lập tức)
-                        onSnapshot(viewDocRef, (docSnap) => {
-                            if (docSnap.exists()) {
-                                const data = docSnap.data();
-                                countText.textContent = (data.views || 0).toLocaleString('vi-VN');
-                            } else {
-                                countText.textContent = "0";
-                                // Tạo file lưu trữ nếu video này chưa ai xem
-                                setDoc(viewDocRef, { views: 0 }, { merge: true }).catch(()=>{});
-                            }
-                        });
-
-                        // Biến chống spam: Chỉ cộng 1 lượt xem cho mỗi lần tải trang
-                        let hasCountedThisSession = false;
-
-                        video.addEventListener('play', async () => {
-                            wrapper.classList.add('is-playing');
-                            video.controls = true;
-
-                            if (!hasCountedThisSession) {
-                                hasCountedThisSession = true;
-                                try {
-                                    // Bắn tín hiệu lên Database: Cộng thêm 1 vào tổng số lượt xem
-                                    await updateDoc(viewDocRef, { views: increment(1) });
-                                } catch (e) {
-                                    await setDoc(viewDocRef, { views: 1 }, { merge: true });
-                                }
-                            }
-                        });
-
-                        video.addEventListener('pause', () => {
-                            wrapper.classList.remove('is-playing');
-                            video.controls = false;
-                        });
-
-                        video.addEventListener('click', () => {
-                            if (video.paused) video.play();
-                            else video.pause();
-                        });
-
-                        if (isDesktop) {
-                            wrapper.addEventListener('mouseenter', () => video.play().catch(()=>{}));
-                            wrapper.addEventListener('mouseleave', () => video.pause());
-                        }
-                    });
-                });
+        // General Slider Control
+        function scrollSlider(sliderId, direction) {
+            const slider = document.getElementById(sliderId);
+            const scrollAmount = slider.clientWidth * 0.8; // Scroll about 80% of width
+            if (direction === 'left') {
+                slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
             } else {
-                // FALLBACK: Khi đưa web lên GitHub Pages (hoặc máy chủ không có cấu hình Database)
-                // Nó sẽ lưu trữ tạo vào bộ nhớ cục bộ để tránh bị vỡ giao diện.
-                videoWrappers.forEach(wrapper => {
-                    const video = wrapper.querySelector('video');
-                    const card = wrapper.closest('.video-card');
-                    const vidId = card.getAttribute('data-vid');
-                    const countText = wrapper.querySelector('.count-text');
-                    
-                    let views = parseInt(localStorage.getItem('pnj_fallback_' + vidId));
-                    if (isNaN(views)) views = Math.floor(Math.random() * 50) + 10;
-                    countText.textContent = views.toLocaleString('vi-VN');
-                    
-                    let hasCountedThisSession = false;
-                    
-                    video.addEventListener('play', () => {
-                        wrapper.classList.add('is-playing');
-                        video.controls = true;
-                        if (!hasCountedThisSession) {
-                            views++;
-                            localStorage.setItem('pnj_fallback_' + vidId, views);
-                            countText.textContent = views.toLocaleString('vi-VN');
-                            hasCountedThisSession = true;
-                        }
-                    });
-                    
-                    video.addEventListener('pause', () => {
-                        wrapper.classList.remove('is-playing');
-                        video.controls = false;
-                    });
-                    
-                    video.addEventListener('click', () => {
-                        if (video.paused) video.play();
-                        else video.pause();
-                    });
-                    
-                    if (isDesktop) {
-                        wrapper.addEventListener('mouseenter', () => video.play().catch(()=>{}));
-                        wrapper.addEventListener('mouseleave', () => video.pause());
-                    }
-                });
+                slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
             }
-        });
+        }
+
+        // Logic main tabs
+        function switchTeamTab(teamTabId) {
+            document.querySelectorAll('.team-panel').forEach(p => p.classList.add('hidden'));
+            document.querySelectorAll('#btn-team-design, #btn-team-content').forEach(b => {
+                b.classList.remove('bg-[#9A161F]', 'text-white', 'shadow-md');
+                b.classList.add('bg-transparent', 'text-[#003366]');
+            });
+            document.getElementById(teamTabId).classList.remove('hidden');
+            document.getElementById('btn-' + teamTabId).classList.add('bg-[#9A161F]', 'text-white', 'shadow-md');
+            checkVisibility();
+        }
+
+        // Logic sub tabs
+        function switchSubTab(subTabId) {
+            document.querySelectorAll('.sub-content').forEach(c => {
+                c.classList.add('hidden');
+                c.classList.remove('block', 'is-visible');
+            });
+            document.querySelectorAll('#btn-sub-zalo, #btn-sub-hub, #btn-sub-gtm').forEach(b => {
+                b.classList.remove('sub-tab-active');
+                b.classList.add('bg-white', 'text-[#003366]');
+            });
+
+            const activeContent = document.getElementById(subTabId);
+            activeContent.classList.remove('hidden');
+            activeContent.classList.add('block');
+            
+            setTimeout(() => {
+                activeContent.classList.add('is-visible');
+                lucide.createIcons();
+            }, 50);
+
+            document.getElementById('btn-' + subTabId).classList.add('sub-tab-active');
+        }
     </script>
 </body>
 </html>
