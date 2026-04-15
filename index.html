@@ -167,7 +167,6 @@
                         <!-- Cột 1: Cá nhân hóa thiệp -->
                         <div class="space-y-6 pt-0">
                             <div class="border-l-4 border-[#003366] pl-4">
-                                <!-- Updated Title Font to match Column 2 -->
                                 <h3 class="font-bold text-[#003366] text-sm md:text-base uppercase tracking-wide leading-tight">Cá nhân hóa nội dung thiệp 8/3</h3>
                                 <div class="text-[10px] text-gray-500 mt-2 font-medium leading-relaxed">
                                     • Xây dựng hệ thống thiệp <span class="text-[#003366] font-bold">theo từng đối tượng</span><br>
@@ -247,10 +246,8 @@
                                 </div>
                             </div>
 
-                            <!-- Footer Section / Organic Growth -->
                             <div class="pt-10 border-t border-[#B8860B]/20 mt-10">
                                 <p class="text-[#9A161F] font-bold text-[10px] md:text-xs italic tracking-tight mb-6">Số liệu theo Chương Trình 8.3</p>
-                                
                                 <div class="flex flex-col items-start w-full px-2 space-y-4">
                                     <div class="flex items-center gap-2.5 text-pnjBlue font-bold bg-white/50 px-4 py-2 rounded-full border border-pnjGold/10">
                                         <i data-lucide="trending-up" class="w-5 h-5 text-pnjRed"></i>
@@ -277,93 +274,113 @@
                 </div>
             </section>
 
-            <!-- SUB-TAB 2: VAI TRÒ CREATIVE HUB -->
+            <!-- SUB-TAB 2: VAI TRÒ CREATIVE HUB (RE-LAYOUT TO VERTICAL) -->
             <section id="sub-hub" class="sub-content hidden fade-in-section">
                 <div class="text-center mb-10">
                     <h2 class="font-serif-vi text-2xl md:text-4xl text-[#003366] font-bold uppercase mb-2">VAI TRÒ CREATIVE HUB CỦA K.KHBL</h2>
-                    <p class="font-sans-vi text-[#B8860B] font-bold text-xs md:text-sm tracking-widest uppercase italic">ĐẢM BẢO BRAND CONSISTENCY & TỐI ƯU HIỆU QUẢ TRUYỀN THÔNG ĐA KÊNH
-</p>
+                    <p class="font-sans-vi text-[#B8860B] font-bold text-xs md:text-sm tracking-widest uppercase italic leading-relaxed">ĐẢM BẢO BRAND CONSISTENCY & TỐI ƯU HIỆU QUẢ TRUYỀN THÔNG ĐA KÊNH</p>
                 </div>
                 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start bg-white rounded-[2.5rem] p-8 md:p-12 shadow-xl border border-gray-100">
-                    <div class="relative flex flex-col items-center">
-                        <div class="relative flex items-center justify-center min-h-[400px] w-full mb-12">
-                            <div class="z-20 w-36 h-36 md:w-48 md:h-48 rounded-full bg-[#003366] border-4 border-[#B8860B] shadow-2xl flex items-center justify-center text-center p-4">
-                                <span class="text-white font-bold text-xs md:text-sm leading-tight tracking-widest uppercase">K.KHBL<br>CREATIVE<br>HUB</span>
+                <div class="flex flex-col gap-10">
+                    <!-- Top Section: Coordination Hub Diagram -->
+                    <div class="bg-white rounded-[2.5rem] p-10 md:p-16 shadow-xl border border-gray-100 flex flex-col items-center overflow-hidden">
+                        <div class="text-center mb-12">
+                            <h3 class="font-bold text-[#003366] text-lg uppercase tracking-widest mb-2">Sơ đồ điều phối Hub sáng tạo</h3>
+                            <div class="w-20 h-1 bg-[#B8860B]/20 mx-auto rounded-full"></div>
+                        </div>
+                        
+                        <div class="relative flex items-center justify-center min-h-[500px] w-full max-w-4xl">
+                            <!-- Central Hub -->
+                            <div class="z-20 w-44 h-44 md:w-60 md:h-60 rounded-full bg-[#003366] border-4 border-[#B8860B] shadow-2xl flex items-center justify-center text-center p-6 transition-transform hover:scale-105">
+                                <span class="text-white font-bold text-sm md:text-base leading-tight tracking-widest uppercase italic">K.KHBL<br>CREATIVE<br>HUB</span>
                             </div>
+                            
+                            <!-- Animated Orbit -->
                             <div class="absolute inset-0 flex items-center justify-center">
-                                <div class="w-full h-full max-w-[340px] max-h-[340px] border border-dashed border-[#B8860B]/30 rounded-full animate-spin-slow"></div>
+                                <div class="w-full h-full max-w-[420px] max-h-[420px] md:max-w-[500px] md:max-h-[500px] border border-dashed border-[#B8860B]/40 rounded-full animate-spin-slow"></div>
                             </div>
                             
-                            <div class="absolute top-0 left-0 bg-white shadow-lg p-4 rounded-xl border-l-4 border-[#003366] w-48 md:w-56 transition-all hover:scale-105">
-                                <h4 class="text-[11px] font-bold text-[#003366] mb-1">1. BRAND / SUB-BRAND</h4>
-                                <p class="text-[9px] text-gray-500 leading-relaxed">Triển khai nội dung Go-to-Market cho BST mới.</p>
-                                <p class="text-[9px] text-gray-500 leading-relaxed">Thông qua Blog & Zalo Broadcast, đảm bảo đúng định vị – đúng tệp khách hàng – đúng thông điệp.</p>
+                            <!-- Floating Role Cards (Positioned for Vertical Layout) -->
+                            <div class="absolute -top-4 left-0 md:left-4 bg-white shadow-xl p-5 rounded-2xl border-l-8 border-[#003366] w-52 md:w-64 transition-all hover:-translate-y-2 hover:shadow-2xl z-30">
+                                <h4 class="text-xs font-extrabold text-[#003366] mb-2 flex items-center gap-2"><i data-lucide="box" class="w-4 h-4"></i> 1. BRAND / SUB-BRAND</h4>
+                                <p class="text-[10px] md:text-[11px] text-gray-500 leading-relaxed font-medium">Triển khai nội dung Go-to-Market cho BST mới. Đảm bảo đúng định vị – tệp khách hàng.</p>
                             </div>
                             
-                            <div class="absolute top-0 right-0 bg-white shadow-lg p-4 rounded-xl border-r-4 border-[#003366] w-48 md:w-56 text-right transition-all hover:scale-105">
-                                <h4 class="text-[11px] font-bold text-[#003366] mb-1">2. RETAIL MKT</h4>
-                                <p class="text-[9px] text-gray-500 leading-relaxed">Truyền thông campaign trọng điểm (8/3).</p>
-                                <p class="text-[9px] text-gray-500 leading-relaxed">Đồng bộ nội dung trên các kênh PNJ Blog và Zalo OA PNJ.</p>
+                            <div class="absolute -top-4 right-0 md:right-4 bg-white shadow-xl p-5 rounded-2xl border-r-8 border-[#003366] w-52 md:w-64 text-right transition-all hover:-translate-y-2 hover:shadow-2xl z-30">
+                                <h4 class="text-xs font-extrabold text-[#003366] mb-2 flex items-center gap-2 justify-end">2. RETAIL MKT <i data-lucide="store" class="w-4 h-4"></i></h4>
+                                <p class="text-[10px] md:text-[11px] text-gray-500 leading-relaxed font-medium">Truyền thông campaign trọng điểm (8/3). Đồng bộ nội dung trên các nền tảng cửa hàng.</p>
                             </div>
                             
-                            <div class="absolute bottom-0 left-0 bg-white shadow-lg p-4 rounded-xl border-l-4 border-[#003366] w-48 md:w-56 transition-all hover:scale-105">
-                                <h4 class="text-[11px] font-bold text-[#003366] mb-1">3. OMNI - GROWTH - CDP</h4>
-                                <p class="text-[9px] text-gray-500 leading-relaxed">Cá nhân hóa nội dung theo từng nhóm khách hàng.</p>
-                                <p class="text-[9px] text-gray-500 leading-relaxed">Sản xuất content may đo theo từng Persona để tiếp cận lại KHC cho chương trình 8/3.</p>
+                            <div class="absolute -bottom-4 left-0 md:left-4 bg-white shadow-xl p-5 rounded-2xl border-l-8 border-[#003366] w-52 md:w-64 transition-all hover:translate-y-2 hover:shadow-2xl z-30">
+                                <h4 class="text-xs font-extrabold text-[#003366] mb-2 flex items-center gap-2"><i data-lucide="users" class="w-4 h-4"></i> 3. OMNI - GROWTH - CDP</h4>
+                                <p class="text-[10px] md:text-[11px] text-gray-500 leading-relaxed font-medium">Cá nhân hóa nội dung theo từng nhóm khách hàng. May đo Persona tiếp cận KHC cho 8/3.</p>
                             </div>
                             
-                            <div class="absolute bottom-0 right-0 bg-white shadow-lg p-4 rounded-xl border-r-4 border-[#003366] w-48 md:w-56 text-right transition-all hover:scale-105">
-                                <h4 class="text-[11px] font-bold text-[#003366] mb-1">4. OMNI MKT</h4>
-                                <p class="text-[9px] text-gray-500 leading-relaxed">Định hướng & sản xuất nội dung phục vụ chuyển đổi.</p>
-                                <p class="text-[9px] text-gray-500 leading-relaxed">-Phát triển key message cho campaign.</p>
-                                <p class="text-[9px] text-gray-500 leading-relaxed">-Triển khai nội dung đa kênh (FB, Zalo,…).</p>
-                                <p class="text-[9px] text-gray-500 leading-relaxed">-Hỗ trợ các chiến dịch: Tab Sale, Product-driven, 8/3.</p>
+                            <div class="absolute -bottom-4 right-0 md:right-4 bg-white shadow-xl p-5 rounded-2xl border-r-8 border-[#003366] w-52 md:w-64 text-right transition-all hover:translate-y-2 hover:shadow-2xl z-30">
+                                <h4 class="text-xs font-extrabold text-[#003366] mb-2 flex items-center gap-2 justify-end">4. OMNI MKT <i data-lucide="mouse-pointer-2" class="w-4 h-4"></i></h4>
+                                <p class="text-[10px] md:text-[11px] text-gray-500 leading-relaxed font-medium">Định hướng sản xuất nội dung phục vụ chuyển đổi đa kênh (FB, Zalo, Tab Sale, 8/3).</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="flex flex-col items-center bg-gray-50/50 p-8 rounded-[2rem] border border-gray-100">
-                        <div class="text-center mb-8">
-                            <h3 class="font-bold text-[#003366] text-sm uppercase tracking-wider mb-2">Tỉ trọng điều phối nội dung giữa các phòng ban</h3>
-                        </div>
-                        
-                        <div class="relative w-56 h-56 md:w-72 md:h-72 mb-10">
-                            <svg viewBox="0 0 36 36" class="w-full h-full transform -rotate-90">
-                                <circle cx="18" cy="18" r="15.9" fill="transparent" stroke="#e5e7eb" stroke-width="4"></circle>
-                                <circle class="chart-segment" cx="18" cy="18" r="15.9" fill="transparent" stroke="#B8860B" stroke-width="4" stroke-dasharray="80.2 19.8"></circle>
-                                <circle class="chart-segment" cx="18" cy="18" r="15.9" fill="transparent" stroke="#003366" stroke-width="4" stroke-dasharray="14.2 85.8" stroke-dashoffset="-80.2"></circle>
-                                <circle class="chart-segment" cx="18" cy="18" r="15.9" fill="transparent" stroke="#9ca3af" stroke-width="4" stroke-dasharray="5.6 94.4" stroke-dashoffset="-94.4"></circle>
-                            </svg>
-                            <div class="absolute inset-0 flex flex-col items-center justify-center">
-                                <span class="text-4xl font-number text-[#003366]">100%</span>
-                                <span class="text-[9px] text-gray-400 font-bold uppercase tracking-widest mt-1">Điều phối Hub</span>
-                            </div>
-                        </div>
-                        
-                        <div class="w-full space-y-4">
-                            <div class="flex items-center justify-between p-3 bg-white rounded-xl shadow-sm border border-gray-100">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-3 h-3 rounded-full bg-[#B8860B]"></div>
-                                    <span class="text-[11px] font-bold text-[#003366] uppercase">OMNI MKT</span>
-                                </div>
-                                <span class="font-number text-[#B8860B] text-lg">80.2%</span>
+                    <!-- Bottom Section: Statistics and Data -->
+                    <div class="bg-white rounded-[2.5rem] p-10 md:p-16 shadow-xl border border-gray-100 flex flex-col md:flex-row items-center gap-16">
+                        <!-- Chart Part -->
+                        <div class="flex-1 flex flex-col items-center bg-gray-50/50 p-10 rounded-[3rem] border border-gray-100 w-full">
+                            <div class="text-center mb-10">
+                                <h3 class="font-bold text-[#003366] text-sm md:text-base uppercase tracking-wider mb-2">Tỉ trọng điều phối nội dung Q1/2026</h3>
+                                <div class="w-12 h-1 bg-[#003366]/20 mx-auto rounded-full"></div>
                             </div>
                             
-                            <div class="flex items-center justify-between p-3 bg-white rounded-xl shadow-sm border border-gray-100">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-3 h-3 rounded-full bg-[#003366]"></div>
-                                    <span class="text-[11px] font-bold text-[#003366] uppercase">Brand / Sub-Brand</span>
+                            <div class="relative w-64 h-64 md:w-80 md:h-80 mb-6">
+                                <svg viewBox="0 0 36 36" class="w-full h-full transform -rotate-90">
+                                    <circle cx="18" cy="18" r="15.9" fill="transparent" stroke="#e5e7eb" stroke-width="4"></circle>
+                                    <circle class="chart-segment" cx="18" cy="18" r="15.9" fill="transparent" stroke="#B8860B" stroke-width="4" stroke-dasharray="80.2 19.8"></circle>
+                                    <circle class="chart-segment" cx="18" cy="18" r="15.9" fill="transparent" stroke="#003366" stroke-width="4" stroke-dasharray="14.2 85.8" stroke-dashoffset="-80.2"></circle>
+                                    <circle class="chart-segment" cx="18" cy="18" r="15.9" fill="transparent" stroke="#9ca3af" stroke-width="4" stroke-dasharray="5.6 94.4" stroke-dashoffset="-94.4"></circle>
+                                </svg>
+                                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                    <span class="text-5xl font-number text-[#003366]">100%</span>
+                                    <span class="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em] mt-2">Năng suất Hub</span>
                                 </div>
-                                <span class="font-number text-[#003366] text-lg">14.2%</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Legend Part -->
+                        <div class="flex-1 w-full space-y-6">
+                            <h3 class="font-bold text-pnjBlue uppercase text-xs md:text-sm tracking-widest mb-4 border-b pb-2">Phân bổ nguồn lực chi tiết</h3>
+                            
+                            <div class="group flex items-center justify-between p-5 bg-white rounded-2xl shadow-sm border border-gray-100 transition-all hover:border-[#B8860B]/30 hover:shadow-md">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-4 h-4 rounded-full bg-[#B8860B] shadow-sm"></div>
+                                    <div>
+                                        <span class="text-[12px] font-bold text-[#003366] uppercase">OMNI MKT</span>
+                                        <p class="text-[9px] text-gray-400 font-medium">Support campaigns & key messages</p>
+                                    </div>
+                                </div>
+                                <span class="font-number text-[#B8860B] text-2xl">80.2%</span>
                             </div>
                             
-                            <div class="flex items-center justify-between p-3 bg-white rounded-xl shadow-sm border border-gray-100">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-3 h-3 rounded-full bg-[#9ca3af]"></div>
-                                    <span class="text-[11px] font-bold text-gray-500 uppercase">RETAIL và OMNI GROWTH - CDP </span>
+                            <div class="group flex items-center justify-between p-5 bg-white rounded-2xl shadow-sm border border-gray-100 transition-all hover:border-[#003366]/30 hover:shadow-md">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-4 h-4 rounded-full bg-[#003366] shadow-sm"></div>
+                                    <div>
+                                        <span class="text-[12px] font-bold text-[#003366] uppercase">Brand / Sub-Brand</span>
+                                        <p class="text-[9px] text-gray-400 font-medium">Go-to-Market & BST mới</p>
+                                    </div>
                                 </div>
-                                <span class="font-number text-gray-500 text-lg">5.6%</span>
+                                <span class="font-number text-[#003366] text-2xl">14.2%</span>
+                            </div>
+                            
+                            <div class="group flex items-center justify-between p-5 bg-white rounded-2xl shadow-sm border border-gray-100 transition-all hover:border-gray-300 hover:shadow-md">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-4 h-4 rounded-full bg-[#9ca3af] shadow-sm"></div>
+                                    <div>
+                                        <span class="text-[12px] font-bold text-gray-600 uppercase">Retail & Omni Growth</span>
+                                        <p class="text-[9px] text-gray-400 font-medium">CDP & Persona Optimization</p>
+                                    </div>
+                                </div>
+                                <span class="font-number text-gray-500 text-2xl">5.6%</span>
                             </div>
                         </div>
                     </div>
